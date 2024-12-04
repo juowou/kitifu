@@ -1,0 +1,525 @@
+:root {
+    --verde0: #58ff33;
+    --verde1: #35db0f;
+    --verde2: #1fa800;
+    --verde3: #136600;
+    --verde4: #0e4d00;
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Untitled1', sans-serif;
+    user-select: none;
+  }
+
+  @font-face {
+    font-family: 'Untitled1';
+    src: url('../fonts/fonte.otf') format('opentype');
+}
+
+
+body {
+    background-color: black;
+}
+
+.kitifu {
+    width: 24rem;
+    height: 24rem;
+    position:absolute
+}
+
+.center {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    left: 50%;
+    top: 50%;
+  }
+
+
+.case {
+    width: 24rem;
+    height: 24rem;
+    position:absolute
+}
+
+.case-default  {
+    width: 24rem;
+    height: 24rem;
+    position:absolute
+}
+
+
+.ecra {
+    width: 10rem;
+    height: 10rem;
+    position:absolute;
+    top: 8.8rem;
+    left: 6.6rem;
+}
+
+.fundo {
+    width: 10rem;
+    height: 10rem;
+    position:absolute
+}
+
+.rede {
+    width: 1rem;
+    height: 0.6rem;
+    position: absolute;
+    top: 0.8rem;
+    left: 0.8rem;
+}
+
+.status {
+    width: 0.6rem;
+    height: 0.6rem;
+    position: absolute;
+    top: 0.8rem;
+    left: 2.2rem;
+}
+
+#relogio{
+    /* top: -0.07rem*/
+
+    width: 6rem;
+    top: 0.53rem;
+    left: 6rem;
+    background: linear-gradient(to top,  var(--verde4) 0%, 
+    var(--verde4) 44.5%, 
+    var(--verde3)  44.5%, 
+    var(--verde3) 70.5%, 
+    var(--verde2) 70.5%);
+    background-clip: text;
+    color: transparent;
+    position: absolute;
+    font-size: 1.383rem;
+}
+
+#homeEcra {
+    display: block;
+}
+
+.kiti {
+    width: 2.2rem;
+    height: 2.2rem;
+    position: absolute;
+    top: 2.2rem;
+    left: 4rem;
+}
+
+.friends {
+    width: 2.2rem;
+    height: 2.2rem;
+    position: absolute;
+    top: 4.6rem;
+    left: 1.6rem;
+}
+
+.mp3 {
+    width: 2.2rem;
+    height: 2.2rem;
+    position: absolute;
+    top: 7rem;
+    left: 1.6rem;
+}
+
+.map {
+    width: 2.2rem;
+    height: 2.2rem;
+    position: absolute;
+    top: 7rem;
+    right: 1.4rem;
+}
+
+.messages {
+    width: 2.2rem;
+    height: 2.2rem;
+    position: absolute;
+    top: 4.6rem;
+    left: 4rem;
+}
+
+.settings {
+    width: 2.2rem;
+    height: 2.2rem;
+    position: absolute;
+    top: 7rem;
+    left: 4rem;
+}
+
+.profile {
+    width: 2.2rem;
+    height: 2.2rem;
+    position: absolute;
+    top: 4.6rem;
+    right: 1.4rem;
+}
+
+
+#kitiEcra {
+    display: none;
+}
+
+.status-comida {
+    width: 1rem;
+    height: 1rem;
+    position: absolute;
+    top: 1.8rem;
+    left: 0.6rem;
+}
+
+#statusComida0{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+   display: block;
+}
+
+#statusComida1{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+   display: none;
+}
+
+#statusComida2{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+   display: none;
+}
+
+#statusComida3{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    display: none;
+}
+
+
+.status-amor{
+    width: 1rem;
+    height: 1rem;
+    position: absolute;
+    top: 1.8rem;
+    left: 1.8rem;
+}
+
+#statusAmor0 {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+   display: block;
+}
+
+#statusAmor1 {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+   display: none;
+}
+
+#statusAmor2 {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+   display: none;
+}
+
+#statusAmor3 {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+   display: none;
+}
+
+.armario {
+    width: 1rem;
+    height: 1rem;
+    position: absolute;
+    top: 1.8rem;
+    left: 7.2rem;
+}
+
+.voltar {
+    width: 1rem;
+    height: 1rem;
+    position: absolute;
+    top: 1.8rem;
+    left: 8.4rem;
+}
+
+.kiti-pet {
+    width: 5.2rem;
+    height: 5.2rem;
+    position:absolute;
+    top: 2.8rem;
+    left: 2.2rem;
+}
+
+.kiti-pet *{
+    cursor: grab;
+    width: 5.2rem;
+    height: 5.2rem;
+    position: inherit;
+ 
+    
+}
+
+.kiti-pet *:active {
+    cursor: grabbing;
+}
+.cabeça{
+    z-index: 1;
+    
+}
+
+.corpo{
+    z-index: 0;
+}
+
+.comer {
+    width: 1rem;
+    height: 1rem;
+    position: absolute;
+    top: 8.4rem;
+    left: 0.6rem;
+    
+}
+
+.comida {
+    width: 1rem;
+    height: 2.6rem;
+    position:absolute;
+    top: 0;
+    left: 4.6rem;
+    clip-path: polygon(0 0, 100% 0%, 100% 0, 0% 0);
+    z-index: 2;
+}
+
+.lavar {
+    width: 1rem;
+    height: 1rem;
+    position: absolute;
+    top: 8.4rem;
+    left: 2rem;
+}
+
+.lavagem {
+    width: 9.2rem;
+    height: 10rem;
+    position: absolute;
+    z-index: 3;
+    top: -7rem;
+    left: 0.4rem;
+    clip-path: polygon(0 100%, 100% 100%, 100% 100%, 0% 100%);
+}
+
+.amar {
+    width: 1rem;
+    height: 1rem;
+    position: absolute;
+    top: 8.4rem;
+    left: 3.6rem;
+}
+
+.amor {
+    width: 1.4rem;
+    height: 1.4rem;
+    position: absolute;
+    top: 3.2rem;
+    left: 7.8rem;
+    opacity: 0;
+}
+
+
+.amor1Animaçao {
+    animation: amor1Animaçao 0.5s 4 step-end;
+}
+
+.amor2Animaçao {
+    animation: amor2Animaçao 0.5s 4 step-end;
+}
+
+.amor3Animaçao {
+    animation: amor3Animaçao 0.5s 4 step-end;
+}
+
+.amor4Animaçao {
+    animation: amor4Animaçao 0.5s 4 step-end;
+}
+
+
+
+.passear {
+    width: 1rem;
+    height: 1rem;
+    position: absolute;
+    top: 8.4rem;
+    left: 5.4rem;
+}
+
+.brincar {
+    width: 1rem;
+    height: 1rem;
+    position: absolute;
+    top: 8.4rem;
+    left: 7rem;
+}
+
+.conectar {
+    width: 1rem;
+    height: 1rem;
+    position: absolute;
+    top: 8.4rem;
+    left: 8.4rem;
+}
+
+
+
+.comidaAnimaçao {
+    animation: comer-animaçao 2.5s step-end;
+}
+
+.petCabeça-default-animaçao {
+    animation: petDefault-cabeça-animaçao 7s step-end infinite;
+    
+}
+
+.petCorpo-default-animaçao {
+    animation: petDefault-animaçao 7s step-end infinite;
+
+}
+
+.lavagemAnimaçao {
+    animation: lavagemAnimaçao 3s step-end;
+}
+
+.festinhas-animaçao{
+    animation: festinhas-animaçao 2s step-end;
+}
+
+.festinhas-cabeça-animaçao{
+    animation: festinhas-cabeça-animaçao 2s step-end;
+}
+
+@keyframes amor1Animaçao {
+    0% { opacity: 1; }
+    25% { opacity: 0; }
+  }
+
+@keyframes amor2Animaçao {
+    0% { opacity: 0; }
+    25% { opacity: 1;}
+    50% { opacity: 0;}
+  }
+
+  @keyframes amor3Animaçao {
+    0% { opacity: 0; }
+    50% { opacity: 1; }
+    75% { opacity: 0;}
+  }
+
+  @keyframes amor4Animaçao {
+    0% { opacity: 0; }
+    75% { opacity: 1; }
+    100% { opacity: 0;}
+  }
+
+#amor1 {
+    animation-delay: 0;
+}
+
+#amor2 {
+    animation-delay: 25%;
+}
+
+#amor3 {
+    animation-delay: 50%;
+}
+
+#amor4 {
+    animation-delay: 75%;
+}
+
+@keyframes lavagemAnimaçao {
+    5% {transform: translateY(0.4rem); clip-path: polygon(0 100%, 100% 100%, 100% 96%, 0% 96%);}
+    10% {transform: translateY(1.2rem);clip-path: polygon(0 100%, 100% 100%, 100% 88%, 0% 88%);}
+    15% {transform: translateY(2rem);clip-path: polygon(0 100%, 100% 100%, 100% 80%, 0% 80%);}
+    20% {transform: translateY(2.8rem); clip-path: polygon(0 100%, 100% 100%, 100% 72%, 0% 72%);}
+    25% {transform: translateY(3.6rem); clip-path: polygon(0 100%, 100% 100%, 100% 64%, 0% 64%);}
+    30% {transform: translateY(4.4rem); clip-path: polygon(0 100%, 100% 100%, 100% 56%, 0% 56%);}
+    35% {transform: translateY(5.2rem); clip-path: polygon(0 100%, 100% 100%, 100% 48%, 0% 48%);}
+    40% {transform: translateY(6.0rem); clip-path: polygon(0 92%, 100% 92%, 100% 40%, 0% 40%);}
+    45% {transform: translateY(6.8rem); clip-path: polygon(0 84%, 100% 84%, 100% 32%, 0% 32%);}
+    50% {transform: translateY(7.6rem); clip-path: polygon(0 76%, 100% 76%, 100% 24%, 0% 24%);}
+    55% {transform: translateY(8.4rem); clip-path: polygon(0 68%, 100% 68%, 100% 16%, 0% 16%);}
+    60% {transform: translateY(9.2rem); clip-path: polygon(0 60%, 100% 60%, 100% 8%, 0% 8%);}
+    65% {transform: translateY(10rem); clip-path: polygon(0 52%, 100% 52%, 100% 0%, 0% 0%);}
+    70% {transform: translateY(10.8rem); clip-path: polygon(0 44%, 100% 44%, 100% 0%, 0% 0%);}
+    75% {transform: translateY(11.6rem); clip-path: polygon(0 36%, 100% 36%, 100% 0%, 0% 0%);}
+    80% {transform: translateY(12.4rem); clip-path: polygon(0 28%, 100% 28%, 100% 0%, 0% 0%);}
+    85% {transform: translateY(13.2rem); clip-path: polygon(0 20%, 100% 20%, 100% 0%, 0% 0%);}
+    90% {transform: translateY(14rem); clip-path: polygon(0 12%, 100% 12%, 100% 0%, 0% 0%);}
+    95% {transform: translateY(14.8rem); clip-path: polygon(0 4%, 100% 4%, 100% 0%, 0% 0%);}
+    100% {transform: translateY(15.6rem); clip-path: polygon(0 0%, 100% 0%, 100% 0%, 0% 0%);}
+}
+
+@keyframes petDefault-cabeça-animaçao {
+    0% {transform: scaleX(1);}
+    16.67% {transform: scaleX(-1);}
+    33.33% {transform: scaleX(1);}
+    50% {transform: scaleX(-1);}
+    66.67% {transform: scaleX(1);}          /* Frame 5 */
+    83% {transform: translateY(1.2rem); }  /* Frame 6 with translateY */
+    100% { transform: translateY(0); }  /* Back to original position */
+}
+
+@keyframes petDefault-animaçao {
+    0% {transform: scaleX(1);}
+    16.67% {transform: scaleX(-1);}
+    33.33% {transform: scaleX(1);}
+    50% {transform: scaleX(-1);}
+    66.67% {transform: scaleX(1);}
+}
+
+@keyframes festinhas-animaçao {
+    0% {transform: scaleX(1)}
+    12.5% {transform: scaleX(-1)}
+    25% {transform: scaleX(1)}
+    37.5% {transform: scaleX(-1)}
+    50% {transform: scaleX(1)}
+    62.5% {transform: scaleX(-1)}
+    75% {transform: scaleX(1)}
+    87.5% {transform: scaleX(-1)}
+    100% {transform: scaleX(1)}
+}
+
+@keyframes festinhas-cabeça-animaçao {
+    0% { transform: scaleX(1) translateY(1.2rem); }
+    12.5% { transform: scaleX(-1) translateY(1.2rem); }
+    25% { transform: scaleX(1) translateY(1.2rem); }
+    37.5% { transform: scaleX(-1) translateY(1.2rem); }
+    50% { transform: scaleX(1) translateY(0); }
+    62.5% { transform: scaleX(-1) translateY(0); }
+    75% { transform: scaleX(1) translateY(0); }
+    87.5% { transform: scaleX(-1) translateY(0); }
+    100% { transform: scaleX(1) translateY(1.2rem); }
+}
+
+
+
+@keyframes comer-animaçao {
+    0% { transform: translateY(0.6rem); clip-path: polygon(0 84.6%, 100% 84.6%, 100% 100%, 0% 100%);}
+    12.5% { transform: translateY(1.2rem); clip-path: polygon(0 61.6%, 100% 61.6%, 100% 100%, 0% 100%);}
+    25% { transform: translateY(2rem); clip-path: polygon(0 30.8%, 100% 30.8%, 100% 100%, 0% 100%);}
+    37.5%{ transform: translateY(2.8rem); clip-path: polygon(0 0, 100% 0%, 100% 100%, 0% 100%); }
+    50%{ transform: translateY(3.4rem); clip-path: polygon(0 0, 100% 0%, 100% 77%, 0% 77%); }
+    62.5%{ transform: translateY(4rem); clip-path: polygon(0 0, 100% 0%, 100% 53.8%, 0% 53.8%); }
+    75%{ transform: translateY(4.8rem); clip-path: polygon(0 0, 100% 0%, 100% 23%, 0% 23%);}
+    87.5%{ transform: translateY(5.6rem);clip-path: polygon(0 0, 100% 0%, 100% 0, 0% 0); }
+    100%{ transform: translateY(5.6rem); clip-path: polygon(0 0, 100% 0%, 100% 0, 0% 0);}
+}
