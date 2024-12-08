@@ -10,7 +10,7 @@ const feeding = document.getElementById("feeding");
 const wash = document.getElementById("wash");
 const washing = document.getElementById("washing");
 const love = document.getElementById("love");
-const loving = document.getElementById("loving")
+const lovingFrame1 = document.getElementById("lovingFrame1")
 const loveStatus0 = document.getElementById("loveStatus0")
 const loveStatus1 = document.getElementById("loveStatus1")
 const loveStatus2 = document.getElementById("loveStatus2")
@@ -19,6 +19,10 @@ const hungryStatus0 = document.getElementById("hungryStatus0")
 const hungryStatus1 = document.getElementById("hungryStatus1")
 const hungryStatus2 = document.getElementById("hungryStatus2")
 const hungryStatus3 = document.getElementById("hungryStatus3")
+const poopStatus = document.getElementById("poopStatus")
+const poopStatus1 = document.getElementById("poopStatus1")
+const poopStatus2 = document.getElementById("poopStatus2")
+const poopStatus3 = document.getElementById("poopStatus3")
 
 
 //clock
@@ -61,6 +65,7 @@ back.addEventListener('click', function() {
 
 let hungryLevel = 0
 let loveLevel = 0
+let poopLevel = 2
 
 const loveLevelDisplay = (loveLevel) => {
   if (loveLevel === 0) {
@@ -183,39 +188,151 @@ const hungryLevelDisplay = (hungryLevel) => {
   }
 }
 
+const poopLevelDisplay = (poopLevel) => {
+  if (poopLevel === 0) {
+    poopStatus1.classList.add('none');
+    poopStatus1.classList.remove('block');
+
+    poopStatus2.classList.add('none');
+    poopStatus2.classList.remove('block');
+
+    poopStatus3.classList.add('none');
+    poopStatus3.classList.remove('block');
+  } else if (poopLevel === 1) {
+    poopStatus1.classList.add('block');
+    poopStatus1.classList.remove('none');
+
+    poopStatus2.classList.add('none');
+    poopStatus2.classList.remove('block');
+
+    poopStatus3.classList.add('none');
+    poopStatus3.classList.remove('block');
+  } else if (poopLevel = 2) {
+    poopStatus1.classList.add('none');
+    poopStatus1.classList.remove('block');
+
+    poopStatus2.classList.add('block');
+    poopStatus2.classList.remove('none');
+
+    poopStatus3.classList.add('none');
+    poopStatus3.classList.remove('block');
+  } else if (poopLevel = 3) {
+    poopStatus1.classList.add('none');
+    poopStatus1.classList.remove('block');
+
+    poopStatus2.classList.add('none');
+    poopStatus2.classList.remove('block');
+
+    poopStatus3.classList.add('block');
+    poopStatus3.classList.remove('none');
+  }
+}
+
 loveLevelDisplay(loveLevel)
 hungryLevelDisplay(hungryLevel)
+poopLevelDisplay(poopLevel)
 
 
 feed.addEventListener('click', function() {
-  feeding.classList.add('feeding-animation');
-  kitipetHead.classList.remove('kitipetHead-default-animation');
-  kitipetBody.classList.remove('kitipetBody-default-animation');
-  
+  if (hungryLevel < 3) {
+    feeding.classList.add('feeding-animation');
+    kitipetHead.classList.remove('default-animation');
+    kitipetBody.classList.remove('default-animation');
+  } else {
+    return
+  }
 })
 
 feeding.addEventListener('animationend', function() {
   feeding.classList.remove('feeding-animation');
   hungryLevel += 1;
   hungryLevelDisplay(hungryLevel);
-  kitipetHead.classList.add('kitipetHead-default-animation');
-  kitipetBody.classList.add('kitipetBody-default-animation');
+  kitipetHead.classList.add('default-animation');
+  kitipetBody.classList.add('default-animation');
 })
-/*
-love.addEventListener('click', function() {
+
+
+wash.addEventListener('click', function () {
+  if (poopLevel > 0) {
+    kitipetHead.classList.remove('default-animation');
+    kitipetBody.classList.remove('default-animation');
+
+    washing.classList.add('washing-animation');
+    
+    poopStatus.classList.add('none');
+    poopStatus.classList.remove('block');
+  }
+});
+
+washing.addEventListener('animationend', function () {
+  washing.classList.remove('washing-animation');
+
+  kitipetHead.classList.add('default-animation');
+  kitipetBody.classList.add('default-animation');
+
+  poopStatus.classList.add('block');
+  poopStatus.classList.remove('none');
+  
+  poopLevel -= 1;
+  poopLevelDisplay(poopLevel);
+});  
+
+const lovingStart = () => {
+  console.log('yo');
   loving.classList.remove('none');
   loving.classList.add('block');
-})
 
-loving.addEventListener('animationend', function() {
+  kitipetHead.classList.remove('default-animation');
+  kitipetHead.classList.add('loving-animation');
+
+  kitipetBody.classList.remove('default-animation');
+  kitipetBody.classList.add('loving-animation');
+
+  lovingFrame1.addEventListener('animationend', lovingEnd)
+}
+
+const lovingEnd = () => {
   loving.classList.remove('block');
   loving.classList.add('none');
+
+  kitipetHead.classList.add('default-animation');
+  kitipetHead.classList.remove('loving-animation');
+
+  kitipetBody.classList.add('default-animation');
+  kitipetBody.classList.remove('loving-animation');
+  console.log('loveLevel +1')
   loveLevel += 1;
   loveLevelDisplay(loveLevel);
-})
-*/
+} 
 
-  
+
+love.addEventListener('click', lovingStart)
+
+
+const petting = () => {
+  let isMouseDown = false;
+  let isMouseMove = false;
+
+  kitipet.addEventListener("mousedown",function () {
+    isMouseDown = true;
+    console.log("mousedown");
+  })
+
+  document.addEventListener("mousemove" , function() {
+    if(isMouseDown) {
+    isMouseMove = true;
+    console.log("mousemove");
+    lovingStart()
+  }
+  });
+
+  document.addEventListener("mouseup", function() {
+    isMouseDown = false;
+  });
+
+}
+petting()
+
 
 
 
