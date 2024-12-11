@@ -36,7 +36,7 @@ function getTime() {
   
 function setTime() {
     var time = getTime();
-      clock.innerText = time;
+    clock.innerText = time;
   }
 
 setInterval(setTime , 1000);
@@ -63,168 +63,218 @@ back.addEventListener('click', function() {
 
 //kitipet
 
-let hungryLevel = 0
+let hungryLevel = 3
 let loveLevel = 0
 let poopLevel = 2
 
+
+let hungryTimer = ''
+let poopTimer = ''
+let hateTimer = ''
+
+const setHungryTimer = () => {
+  var getHours = new Date().getHours();
+  console.log(getHours + ' getHours');
+  if (hungryLevel === 2) {
+    hungryTimer = getHours + Math.floor(Math.random() * 3) + 1;
+    console.log(hungryTimer + ' hungryTimer from hungryLevel1');
+  } else if (hungryLevel === 1) {
+    hungryTimer = getHours + Math.floor(Math.random() * 3) + 2;
+    console.log(hungryTimer + ' hungryTimer from hungryLevel1');
+  } else if (hungryLevel === 0) {
+    hungryTimer = getHours + Math.floor(Math.random() * 3) + 4;
+    console.log(hungryTimer + ' hungryTimer from hungryLevel1');
+  }
+  
+}
+
+const getHungry = () => {
+  if (hungryTimer === new Date().getMinutes()) {
+    console.log('hungryLevel +1 getHungry')
+    hungryLevel += 1;
+    hungryLevelDisplay(hungryLevel);
+  } else {
+    console.log('hungryLevel +0 getHungry')
+  }
+}
+
+setInterval(getHungry , 3600000);
+
+const setPoopTimer = () => {
+  var getHours = new Date().getHours();
+  console.log(getHours + ' getHours');
+  if (poopLevel === 2) {
+    poopTimer = getHours + Math.floor(Math.random() * 3) + 1;
+    console.log(poopTimer + ' poopTimer from poopLevel1');
+  } else if (poopLevel === 1) {
+    poopTimer = getHours + Math.floor(Math.random() * 3) + 2;
+    console.log(poopTimer + ' poopTimer from poopTimerLevel2');
+  } else if (poopLevel === 0) {
+    poopTimer = getHours + Math.floor(Math.random() * 3) + 4;
+    console.log(poopTimer + ' poopTimer from poopLevel3');
+  }
+  
+}
+
+const getPoop = () => {
+  if (poopTimer === new Date().getMinutes()) {
+    console.log('poopLevel +1 getPoop')
+    poopLevel += 1;
+    poopLevelDisplay(poopLevel);
+  } else {
+    console.log('poopLevel +0 getPoop')
+  }
+}
+
+setInterval(getPoop , 3600000);
+
+
+
+const setHateTimer = () => {
+  var getHours = new Date().getHours();
+  console.log(getHours + ' getHours');
+    hateTimer = getHours + Math.floor(Math.random() * 3) + 1;
+    console.log(hateTimer + ' hateTimer');
+  
+}
+
+const getHate = () => {
+  if (poopTimer === new Date().getMinutes()) {
+    console.log('loveLevel -1 getHate')
+    poopLevel += 1;
+    poopLevelDisplay(poopLevel);
+  } else {
+    console.log('poopLevel -0 getPoop')
+  }
+}
+
+setInterval(getHate , 3600000);
+
+
 const loveLevelDisplay = (loveLevel) => {
   if (loveLevel === 0) {
-    loveStatus0.classList.add('block');
     loveStatus0.classList.remove('none');
 
     loveStatus1.classList.add('none');
-    loveStatus1.classList.remove('block');
 
     loveStatus2.classList.add('none');
-    loveStatus2.classList.remove('block');
 
     loveStatus3.classList.add('none');
-    loveStatus3.classList.remove('block');
 
     console.log("loveLevel0")
 
   } else if (loveLevel === 1) {
 
     loveStatus0.classList.add('none');
-    loveStatus0.classList.remove('block');
 
-    loveStatus1.classList.add('block');
     loveStatus1.classList.remove('none');
 
     loveStatus2.classList.add('none');
-    loveStatus2.classList.remove('block');
 
     loveStatus3.classList.add('none');
-    loveStatus3.classList.remove('block');
+
   } else if (loveLevel === 2) {
 
     loveStatus0.classList.add('none');
-    loveStatus0.classList.remove('block');
+
 
     loveStatus1.classList.add('none');
-    loveStatus1.classList.remove('block');
 
-    loveStatus2.classList.add('block');
+
     loveStatus2.classList.remove('none');
 
+
     loveStatus3.classList.add('none');
-    loveStatus3.classList.remove('block');
+
 
   } else if (loveLevel === 3) {
 
     loveStatus0.classList.add('none');
-    loveStatus0.classList.remove('block');
+
 
     loveStatus1.classList.add('none');
-    loveStatus1.classList.remove('block');
+  
 
     loveStatus2.classList.add('none');
-    loveStatus2.classList.remove('block');
 
-    loveStatus3.classList.add('block');
     loveStatus3.classList.remove('none');
+
+    setHateTimer();
 
   }
 }
 
 const hungryLevelDisplay = (hungryLevel) => {
-  if (hungryLevel === 0) {
-    hungryStatus0.classList.add('block');
+  if (hungryLevel === 3) {
+
     hungryStatus0.classList.remove('none');
-
     hungryStatus1.classList.add('none');
-    hungryStatus1.classList.remove('block');
-
     hungryStatus2.classList.add('none');
-    hungryStatus2.classList.remove('block');
-
     hungryStatus3.classList.add('none');
-    hungryStatus3.classList.remove('block');
 
-    console.log("loveLevel0")
-
-  } else if (hungryLevel === 1) {
-
-    hungryStatus0.classList.add('none');
-    hungryStatus0.classList.remove('block');
-
-    hungryStatus1.classList.add('block');
-    hungryStatus1.classList.remove('none');
-
-    hungryStatus2.classList.add('none');
-    hungryStatus2.classList.remove('block');
-
-    hungryStatus3.classList.add('none');
-    hungryStatus3.classList.remove('block');
+    loveLevel -= 1;
 
   } else if (hungryLevel === 2) {
 
     hungryStatus0.classList.add('none');
-    hungryStatus0.classList.remove('block');
-
-    hungryStatus1.classList.add('none');
-    hungryStatus1.classList.remove('block');
-
-    hungryStatus2.classList.add('block');
-    hungryStatus2.classList.remove('none');
-
+    hungryStatus1.classList.remove('none');
+    hungryStatus2.classList.add('none');
     hungryStatus3.classList.add('none');
-    hungryStatus3.classList.remove('block');
 
+    setHungryTimer();
 
-  } else if (hungryLevel === 3) {
+  } else if (hungryLevel === 1) {
 
     hungryStatus0.classList.add('none');
-    hungryStatus0.classList.remove('block');
-
     hungryStatus1.classList.add('none');
-    hungryStatus1.classList.remove('block');
+    hungryStatus2.classList.remove('none');
+    hungryStatus3.classList.add('none');
 
+    setHungryTimer();
+
+  } else if (hungryLevel === 0) {
+
+    hungryStatus0.classList.add('none');
+    hungryStatus1.classList.add('none');
     hungryStatus2.classList.add('none');
-    hungryStatus2.classList.remove('block');
-
-    hungryStatus3.classList.add('block');
     hungryStatus3.classList.remove('none');
+
+    setHungryTimer();
+
   }
 }
 
 const poopLevelDisplay = (poopLevel) => {
   if (poopLevel === 0) {
+
     poopStatus1.classList.add('none');
-    poopStatus1.classList.remove('block');
-
     poopStatus2.classList.add('none');
-    poopStatus2.classList.remove('block');
-
     poopStatus3.classList.add('none');
-    poopStatus3.classList.remove('block');
+
+    setPoopTimer()
+
   } else if (poopLevel === 1) {
-    poopStatus1.classList.add('block');
+
     poopStatus1.classList.remove('none');
-
     poopStatus2.classList.add('none');
-    poopStatus2.classList.remove('block');
-
     poopStatus3.classList.add('none');
-    poopStatus3.classList.remove('block');
-  } else if (poopLevel = 2) {
-    poopStatus1.classList.add('none');
-    poopStatus1.classList.remove('block');
 
-    poopStatus2.classList.add('block');
+    setPoopTimer()
+
+  } else if (poopLevel === 2) {
+
+    poopStatus1.classList.add('none');
     poopStatus2.classList.remove('none');
-
     poopStatus3.classList.add('none');
-    poopStatus3.classList.remove('block');
-  } else if (poopLevel = 3) {
+
+    setPoopTimer()
+
+  } else if (poopLevel === 3) {
     poopStatus1.classList.add('none');
-    poopStatus1.classList.remove('block');
-
     poopStatus2.classList.add('none');
-    poopStatus2.classList.remove('block');
-
-    poopStatus3.classList.add('block');
     poopStatus3.classList.remove('none');
+
+    loveLevel -= 1;
   }
 }
 
@@ -234,18 +284,22 @@ poopLevelDisplay(poopLevel)
 
 
 feed.addEventListener('click', function() {
-  if (hungryLevel < 3) {
+  if (hungryLevel !== 0) {
+
     feeding.classList.add('feeding-animation');
     kitipetHead.classList.remove('default-animation');
     kitipetBody.classList.remove('default-animation');
+
   } else {
-    return
+
+    console.log('pet is full')
+
   }
 })
 
 feeding.addEventListener('animationend', function() {
   feeding.classList.remove('feeding-animation');
-  hungryLevel += 1;
+  hungryLevel -= 1;
   hungryLevelDisplay(hungryLevel);
   kitipetHead.classList.add('default-animation');
   kitipetBody.classList.add('default-animation');
@@ -278,21 +332,24 @@ washing.addEventListener('animationend', function () {
 });  
 
 const lovingStart = () => {
-  console.log('yo');
-  loving.classList.remove('none');
-  loving.classList.add('block');
 
-  kitipetHead.classList.remove('default-animation');
-  kitipetHead.classList.add('loving-animation');
+  if (poopLevel !== 0 || hungryLevel !== 0) {
+    console.log('pet is pooped and or hungry')
+  } else {
+    loving.classList.remove('none');
 
-  kitipetBody.classList.remove('default-animation');
-  kitipetBody.classList.add('loving-animation');
+    kitipetHead.classList.remove('default-animation');
+    kitipetHead.classList.add('loving-animation');
 
-  lovingFrame1.addEventListener('animationend', lovingEnd)
+    kitipetBody.classList.remove('default-animation');
+    kitipetBody.classList.add('loving-animation');
+
+    lovingFrame1.addEventListener('animationend', lovingEnd)
+  }
 }
 
 const lovingEnd = () => {
-  loving.classList.remove('block');
+
   loving.classList.add('none');
 
   kitipetHead.classList.add('default-animation');
@@ -332,7 +389,6 @@ const petting = () => {
 
 }
 petting()
-
 
 
 
