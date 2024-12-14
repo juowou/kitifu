@@ -64,9 +64,19 @@ back.addEventListener('click', function() {
 
 //kitipet
 
-let hungryLevel = 3
-let loveLevel = 0
-let poopLevel = 3
+
+let hungryLevel = ''
+
+let storedHungryLevel = localStorage.getItem("hungryLevel");
+const getHungryLevel = () => parseInt(localStorage.getItem('hungryLevel'));
+
+
+
+
+
+
+let loveLevel = ''
+let poopLevel = ''
 
 
 let hungryTimer = {
@@ -76,7 +86,8 @@ let hungryTimer = {
 }
 
 let storedHungryTimer = localStorage.getItem('storedHungryTimer'); 
-let getHungryTimer = JSON.parse(storedHungryTimer); 
+/*let getHungryTimer = JSON.parse(storedHungryTimer); 
+*/
 
 let poopTimer = {
   level3: '',
@@ -98,18 +109,19 @@ let getHateTimer = JSON.parse(storedHateTimer);
 const setHungryTimer = () => {
   const getHours = new Date().getHours();
   console.log(getHours + ' getHours');
-  if (hungryLevel === 2) {
+  if (hungryLevel === 3) {
     hungryTimer.level3 = (getHours + Math.floor(Math.random() * 3) + 1) % 24;
     console.log(hungryTimer.level3 + ' hungryLevel3');
-  } else if (hungryLevel === 1) {
+  } else if (hungryLevel === 2) {
     hungryTimer.level2 = (getHours + Math.floor(Math.random() * 3) + 2) % 24;
     console.log(hungryTimer.level2 + ' hungryLevel2');
-  } else if (hungryLevel === 0) {
+  } else if (hungryLevel === 1) {
     hungryTimer.level1 = (getHours + Math.floor(Math.random() * 3) + 4) % 24;
     console.log(hungryTimer.level1 + ' hungryLevel1');
   }
   
   localStorage.setItem('storedHungryTimer', JSON.stringify(hungryTimer));
+  console.log(hungryTimer + ' hungryTimer')
 }
 
 
@@ -119,19 +131,19 @@ const getHungry = () => {
   if (hungryTimer.level1 === currentHour) {
     console.log('hungryLevel +1 getHungry')
     hungryLevel += 1;
-    hungryLevelDisplay(hungryLevel);
+    hungryLevelDisplay(storedHungryLevel);
     hungryTimer.level1 = '';
     console.log(hungryTimer.level1);
   } else if (hungryTimer.level2 === currentHour) {
     console.log('hungryLevel +1 getHungry')
     hungryLevel += 1;
-    hungryLevelDisplay(hungryLevel);
+    hungryLevelDisplay(storedHungryLevel);
     hungryTimer.level2 = '';
     console.log(hungryTimer.level2);
   } else if (hungryTimer.level3 === currentHour) {
     console.log('hungryLevel +1 getHungry')
     hungryLevel += 1;
-    hungryLevelDisplay(hungryLevel);
+    hungryLevelDisplay(storedHungryLevel);
     hungryTimer.level3 = '';
     console.log(hungryTimer.level3);
   }
@@ -189,7 +201,6 @@ const getPoop = () => {
 setInterval(getPoop , 3600000);
 
 
-
 const setHateTimer = () => {
   var getHours = new Date().getHours();
   console.log(getHours + ' getHours');
@@ -210,20 +221,7 @@ const getHate = () => {
     loveLevelDisplay(loveLevel);
     hateTimer.level1 = '';
     console.log(hateTimer.level1);
-  } else if (hateTimer.level2 === currentHour) {
-    console.log('loveLevel -1 getHate')
-    loveLevel -= 1;
-    loveLevelDisplay(loveLevel);
-    hateTimer.level2 = '';
-    console.log(hateTimer.level2);
-  } else if (hateTimer.level3 === currentHour) {
-    console.log('loveLevel -1 getHate')
-    loveLevel -= 1;
-    loveLevelDisplay(loveLevel);
-    loveLevel.level3 = '';
-    console.log(hateTimer.level3);
-  }
-  else {
+  } else {
     console.log('loveLevel -0 getHate')
   }
 }
@@ -265,16 +263,18 @@ const loveLevelDisplay = (loveLevel) => {
 }
 
 const hungryLevelDisplay = (hungryLevel) => {
-  if (hungryLevel === 3) {
+  if (hungryLevel === 4) {
 
     hungryStatus0.classList.remove('none');
     hungryStatus1.classList.add('none');
     hungryStatus2.classList.add('none');
     hungryStatus3.classList.add('none');
+    if (loveLevel !== 0) {
+      loveLevel -= 1;
+    };
+    
 
-    loveLevel -= 1;
-
-  } else if (hungryLevel === 2) {
+  } else if (hungryLevel === 3) {
 
     hungryStatus0.classList.add('none');
     hungryStatus1.classList.remove('none');
@@ -283,7 +283,7 @@ const hungryLevelDisplay = (hungryLevel) => {
 
     setHungryTimer();
 
-  } else if (hungryLevel === 1) {
+  } else if (hungryLevel === 2) {
 
     hungryStatus0.classList.add('none');
     hungryStatus1.classList.add('none');
@@ -292,7 +292,7 @@ const hungryLevelDisplay = (hungryLevel) => {
 
     setHungryTimer();
 
-  } else if (hungryLevel === 0) {
+  } else if (hungryLevel === 1) {
 
     hungryStatus0.classList.add('none');
     hungryStatus1.classList.add('none');
@@ -303,6 +303,23 @@ const hungryLevelDisplay = (hungryLevel) => {
 
   }
 }
+
+const hungryLevelDefault = () => {
+  if (storedHungryLevel > 0) {
+    console.log(getHungryLevel() + ' getHungryLevel')
+    hungryLevel = getHungryLevel();
+    hungryLevelDisplay(hungryLevel);
+    console.log('storedHungryLevel = true')
+  } else {
+    hungryLevel = 4;
+    localStorage.setItem('hungryLevel', JSON.stringify(hungryLevel));
+    hungryLevelDisplay(hungryLevel);
+    console.log('storedHungryLevel = false');
+    console.log(getHungryLevel() + ' storedHungryLevel')
+  };
+}
+
+hungryLevelDefault()
 
 const poopLevelDisplay = (poopLevel) => {
   if (poopLevel === 0) {
@@ -334,12 +351,14 @@ const poopLevelDisplay = (poopLevel) => {
     poopStatus2.classList.add('none');
     poopStatus3.classList.remove('none');
 
-    loveLevel -= 1;
+    if (loveLevel !== 0) {
+      loveLevel -= 1;
+    };
+    
   }
 }
 
 loveLevelDisplay(loveLevel)
-hungryLevelDisplay(hungryLevel)
 poopLevelDisplay(poopLevel)
 
 
@@ -358,12 +377,26 @@ feed.addEventListener('click', function() {
 })
 
 feeding.addEventListener('animationend', function() {
-  feeding.classList.remove('feeding-animation');
-  hungryLevel -= 1;
-  hungryLevelDisplay(hungryLevel);
+  let hungryLevel = getHungryLevel(); // Get the current hungryLevel
+  hungryLevel -= 1; // Decrease hungryLevel directly
+
+  // Update the stored hungryLevel
+  localStorage.setItem('hungryLevel', hungryLevel); 
+
+  // Display hungryLevel
+  let storedHungryLevel = getHungryLevel(); // Retrieve and display it
+  hungryLevelDisplay(storedHungryLevel); // Update the UI for hungryLevel
+  console.log(storedHungryLevel + ' storedHungryLevel'); // Logging
+  console.log(hungryLevel + ' hungryLevel'); // Logging
+
+  // Adding default animations
   kitipetHead.classList.add('default-animation');
   kitipetBody.classList.add('default-animation');
-})
+
+  // Removing feeding animation class
+  feeding.classList.remove('feeding-animation');
+});
+
 
 
 wash.addEventListener('click', function () {
