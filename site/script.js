@@ -25,6 +25,7 @@ const poopStatus2 = document.getElementById("poopStatus2")
 const poopStatus3 = document.getElementById("poopStatus3")
 
 
+
 //clock
 
 let clock = document.getElementById("clock")
@@ -65,35 +66,76 @@ back.addEventListener('click', function() {
 
 let hungryLevel = 3
 let loveLevel = 0
-let poopLevel = 2
+let poopLevel = 3
 
 
-let hungryTimer = ''
-let poopTimer = ''
-let hateTimer = ''
-
-const setHungryTimer = () => {
-  var getHours = new Date().getHours();
-  console.log(getHours + ' getHours');
-  if (hungryLevel === 2) {
-    hungryTimer = getHours + Math.floor(Math.random() * 3) + 1;
-    console.log(hungryTimer + ' hungryTimer from hungryLevel1');
-  } else if (hungryLevel === 1) {
-    hungryTimer = getHours + Math.floor(Math.random() * 3) + 2;
-    console.log(hungryTimer + ' hungryTimer from hungryLevel1');
-  } else if (hungryLevel === 0) {
-    hungryTimer = getHours + Math.floor(Math.random() * 3) + 4;
-    console.log(hungryTimer + ' hungryTimer from hungryLevel1');
-  }
-  
+let hungryTimer = {
+  level3: '',
+  level2: '',
+  level1: '',
 }
 
+let storedHungryTimer = localStorage.getItem('storedHungryTimer'); 
+let getHungryTimer = JSON.parse(storedHungryTimer); 
+
+let poopTimer = {
+  level3: '',
+  level2: '',
+  level1: '',
+}
+
+let storedPoopTimer = localStorage.getItem('storedPoopTimer'); 
+let getPoopTimer = JSON.parse(storedPoopTimer); 
+
+
+let hateTimer = {
+  level1: '',
+}
+
+let storedHateTimer = localStorage.getItem('storedHateTimer'); 
+let getHateTimer = JSON.parse(storedHateTimer); 
+
+const setHungryTimer = () => {
+  const getHours = new Date().getHours();
+  console.log(getHours + ' getHours');
+  if (hungryLevel === 2) {
+    hungryTimer.level3 = (getHours + Math.floor(Math.random() * 3) + 1) % 24;
+    console.log(hungryTimer.level3 + ' hungryLevel3');
+  } else if (hungryLevel === 1) {
+    hungryTimer.level2 = (getHours + Math.floor(Math.random() * 3) + 2) % 24;
+    console.log(hungryTimer.level2 + ' hungryLevel2');
+  } else if (hungryLevel === 0) {
+    hungryTimer.level1 = (getHours + Math.floor(Math.random() * 3) + 4) % 24;
+    console.log(hungryTimer.level1 + ' hungryLevel1');
+  }
+  
+  localStorage.setItem('storedHungryTimer', JSON.stringify(hungryTimer));
+}
+
+
+
 const getHungry = () => {
-  if (hungryTimer === new Date().getMinutes()) {
+  const currentHour = new Date().getHours();
+  if (hungryTimer.level1 === currentHour) {
     console.log('hungryLevel +1 getHungry')
     hungryLevel += 1;
     hungryLevelDisplay(hungryLevel);
-  } else {
+    hungryTimer.level1 = '';
+    console.log(hungryTimer.level1);
+  } else if (hungryTimer.level2 === currentHour) {
+    console.log('hungryLevel +1 getHungry')
+    hungryLevel += 1;
+    hungryLevelDisplay(hungryLevel);
+    hungryTimer.level2 = '';
+    console.log(hungryTimer.level2);
+  } else if (hungryTimer.level3 === currentHour) {
+    console.log('hungryLevel +1 getHungry')
+    hungryLevel += 1;
+    hungryLevelDisplay(hungryLevel);
+    hungryTimer.level3 = '';
+    console.log(hungryTimer.level3);
+  }
+  else {
     console.log('hungryLevel +0 getHungry')
   }
 }
@@ -101,27 +143,45 @@ const getHungry = () => {
 setInterval(getHungry , 3600000);
 
 const setPoopTimer = () => {
-  var getHours = new Date().getHours();
+  const getHours = new Date().getHours();
   console.log(getHours + ' getHours');
   if (poopLevel === 2) {
-    poopTimer = getHours + Math.floor(Math.random() * 3) + 1;
-    console.log(poopTimer + ' poopTimer from poopLevel1');
+    poopTimer.level3 = (getHours + Math.floor(Math.random() * 3) + 1) % 24;
+    console.log(poopTimer.level3 + ' poopLevel3');
   } else if (poopLevel === 1) {
-    poopTimer = getHours + Math.floor(Math.random() * 3) + 2;
-    console.log(poopTimer + ' poopTimer from poopTimerLevel2');
+    poopTimer.level2 = (getHours + Math.floor(Math.random() * 3) + 2) % 24;
+    console.log(poopTimer.level2 + ' poopTimerLevel2');
   } else if (poopLevel === 0) {
-    poopTimer = getHours + Math.floor(Math.random() * 3) + 4;
-    console.log(poopTimer + ' poopTimer from poopLevel3');
+    poopTimer.level1 = (getHours + Math.floor(Math.random() * 3) + 4) % 24;
+    console.log(poopTimer.level1 + 'poopLevel3');
   }
   
+  localStorage.setItem('storedPoopTimer', JSON.stringify(poopTimer));
+
 }
 
 const getPoop = () => {
-  if (poopTimer === new Date().getMinutes()) {
+  const currentHour = new Date().getHours();
+  if (poopTimer.level1 === currentHour) {
+    console.log('pooplevel +1 getPoop')
+    poopLevel += 1;
+    poopLevelDisplay(poopLevel);
+    poopTimer.level1 = '';
+    console.log(poopTimer.level1);
+  } else if (poopTimer.level2 === currentHour) {
     console.log('poopLevel +1 getPoop')
     poopLevel += 1;
     poopLevelDisplay(poopLevel);
-  } else {
+    poopTimer.level2 = '';
+    console.log(poopTimer.level2);
+  } else if (poopTimer.level3 === currentHour) {
+    console.log('poopLevel +1 getPoop')
+    poopLevel += 1;
+    poopLevelDisplay(poopLevel);
+    poopTimer.level3 = '';
+    console.log(poopTimer.level3);
+  }
+  else {
     console.log('poopLevel +0 getPoop')
   }
 }
@@ -133,18 +193,38 @@ setInterval(getPoop , 3600000);
 const setHateTimer = () => {
   var getHours = new Date().getHours();
   console.log(getHours + ' getHours');
-    hateTimer = getHours + Math.floor(Math.random() * 3) + 1;
-    console.log(hateTimer + ' hateTimer');
+  if (loveLevel === 3) {
+    hateTimer.level1 = (getHours + Math.floor(Math.random() * 3) + 4) % 24;
+    console.log(hateTimer.level1 + ' hateTimerLevel1');
+  }
   
+  localStorage.setItem('storedHateTimer', JSON.stringify(hateTimer));
+
 }
 
 const getHate = () => {
-  if (poopTimer === new Date().getMinutes()) {
+  const currentHour = new Date().getHours();
+  if (hateTimer.level1 === currentHour) {
     console.log('loveLevel -1 getHate')
-    poopLevel += 1;
-    poopLevelDisplay(poopLevel);
-  } else {
-    console.log('poopLevel -0 getPoop')
+    loveLevel -= 1;
+    loveLevelDisplay(loveLevel);
+    hateTimer.level1 = '';
+    console.log(hateTimer.level1);
+  } else if (hateTimer.level2 === currentHour) {
+    console.log('loveLevel -1 getHate')
+    loveLevel -= 1;
+    loveLevelDisplay(loveLevel);
+    hateTimer.level2 = '';
+    console.log(hateTimer.level2);
+  } else if (hateTimer.level3 === currentHour) {
+    console.log('loveLevel -1 getHate')
+    loveLevel -= 1;
+    loveLevelDisplay(loveLevel);
+    loveLevel.level3 = '';
+    console.log(hateTimer.level3);
+  }
+  else {
+    console.log('loveLevel -0 getHate')
   }
 }
 
@@ -153,54 +233,34 @@ setInterval(getHate , 3600000);
 
 const loveLevelDisplay = (loveLevel) => {
   if (loveLevel === 0) {
+
     loveStatus0.classList.remove('none');
-
     loveStatus1.classList.add('none');
-
     loveStatus2.classList.add('none');
-
     loveStatus3.classList.add('none');
-
-    console.log("loveLevel0")
 
   } else if (loveLevel === 1) {
 
     loveStatus0.classList.add('none');
-
     loveStatus1.classList.remove('none');
-
     loveStatus2.classList.add('none');
-
     loveStatus3.classList.add('none');
 
   } else if (loveLevel === 2) {
 
     loveStatus0.classList.add('none');
-
-
     loveStatus1.classList.add('none');
-
-
     loveStatus2.classList.remove('none');
-
-
     loveStatus3.classList.add('none');
-
 
   } else if (loveLevel === 3) {
 
     loveStatus0.classList.add('none');
-
-
     loveStatus1.classList.add('none');
-  
-
     loveStatus2.classList.add('none');
-
     loveStatus3.classList.remove('none');
 
     setHateTimer();
-
   }
 }
 
@@ -307,7 +367,7 @@ feeding.addEventListener('animationend', function() {
 
 
 wash.addEventListener('click', function () {
-  if (poopLevel > 0) {
+  if (poopLevel !== 0) {
     kitipetHead.classList.remove('default-animation');
     kitipetBody.classList.remove('default-animation');
 
