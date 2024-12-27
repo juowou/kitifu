@@ -403,26 +403,26 @@ body {
 
 .loving.frame-1{
     opacity: 0;
-    animation: love-animation 2s step-end;
+    animation: love-animation 0.5s step-end 0s 4;
     
 }
 
 .loving.frame-2{
     opacity: 0;
-    animation: love-animation 2s step-end;
-    animation-delay: 0.5s;
+    animation: love-animation 0.5s step-end 0s 4;
+    animation-delay: 0.125s;
 }
 
 .loving.frame-3{
     opacity: 0;
-    animation: love-animation 2s step-end;
-    animation-delay: 1s;
+    animation: love-animation 0.5s step-end 0s 4;
+    animation-delay: 0.25s;
 }
 
 .loving.frame-4{
     opacity: 0;
-    animation: love-animation 2s step-end;
-    animation-delay: 1.5s;
+    animation: love-animation 0.5s step-end 0s 4;
+    animation-delay: 0.375s;
 }
 
 .kitipetHead.loving-animation{
@@ -458,15 +458,14 @@ body {
 }
 
 @keyframes kitipetHead-loving-animation {
-    0% { transform: scaleX(1) translateY(1.2rem); }
-    12.5% { transform: scaleX(-1) translateY(1.2rem); }
-    25% { transform: scaleX(1) translateY(1.2rem); }
-    37.5% { transform: scaleX(-1) translateY(1.2rem); }
-    50% { transform: scaleX(1) translateY(0); }
-    62.5% { transform: scaleX(-1) translateY(0); }
-    75% { transform: scaleX(1) translateY(0); }
-    87.5% { transform: scaleX(-1) translateY(0); }
-    100% { transform: scaleX(1) translateY(1.2rem); }
+    0% { transform: scaleX(1) translateY(0); }
+    12.5% { transform: scaleX(-1) translateY(0); }
+    25% { transform: scaleX(1) translateY(0); }
+    37.5% { transform: scaleX(-1) translateY(0); }
+    50% { transform: scaleX(1) translateY(1.2rem); }
+    62.5% { transform: scaleX(-1) translateY(1.2rem); }
+    75% { transform: scaleX(1) translateY(1.2rem); }
+    87.5% { transform: scaleX(-1) translateY(1.2rem); }
 }
 
 @keyframes washing-animation {
