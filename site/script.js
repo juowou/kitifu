@@ -24,16 +24,18 @@ const poopStatus1 = document.getElementById("poopStatus1")
 const poopStatus2 = document.getElementById("poopStatus2")
 const poopStatus3 = document.getElementById("poopStatus3")
 
-
+const newDate = new Date();
+const updateDateNumeric = (e) => e.getFullYear() * 1000000 + (e.getMonth() + 1) * 10000 + e.getDate() * 100 + e.getHours(); // 2024-12-27 1:49 = 2024122701
 
 //clock
 
 let clock = document.getElementById("clock")
 
 function getTime() {
-    return new Date().toLocaleTimeString('en-US', 
-        { hour12: false, hour: 'numeric', minute: 'numeric' }).toString();
-  }
+  const newDate = new Date();
+  return newDate.toLocaleTimeString('en-US', 
+    { hour12: false, hour: 'numeric', minute: 'numeric' }).toString();
+}
   
 function setTime() {
     var time = getTime();
@@ -77,7 +79,18 @@ const updateStats = () => {
     love = storedLove;
     poop = storedPoop;
 
+    loveLevelDisplay(storedLove.level);
+    hungryLevelDisplay(storedHungry.level);
+    poopLevelDisplay(storedPoop.level);
+
+    getHungry();
+
   } else {
+
+    loveLevelDisplay(love.level);
+    hungryLevelDisplay(hungry.level);
+    poopLevelDisplay(poop.level);
+
     console.log('updateStats localStorage null')
     localStorage.setItem('hungry', JSON.stringify(hungry));
     storedHungry = JSON.parse(localStorage.getItem('hungry'));
@@ -88,9 +101,8 @@ const updateStats = () => {
 
     
   };
-  loveLevelDisplay(storedLove.level);
-    hungryLevelDisplay(storedHungry.level);
-    poopLevelDisplay(storedPoop.level);
+  
+
 }
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -101,86 +113,154 @@ document.addEventListener('DOMContentLoaded', function() {
 // level 1 = bad; level 4 = good;
 let hungry = {
   level: 1,
-  timer: [''],
+  timer: [],
 } 
 
 let poop = {
   level: 1,
-  timer: [''],
+  timer: [],
 } 
 
 let love = {
   level: 1,
-  timer: [''],
+  timer: [],
 } 
 
+//set e get
+// há um bug aqui que é: se a hora de um timer coincidir com a hora do outro, 
+// o getTimer vai remover os dois timers, mas só vai fazer -1, em vez de -2, 
+// o que vai crashar toda esta logica no localStorage e depois vai ser preciso limpa-lo :) 
+// mas tou me a cagar, isso nunca vai acontecer ahahahah ( ⊙ _ ⊙)
 
 const setHungryTimer = () => {
-  const getHours = new Date().getMinutes();
-  console.log(getHours + ' getHours');
+  
+  const currentDate = new Date();  
+  console.log(currentDate + ' currentDate');
   if (hungry.level === 2) {
-    hungry.timer[0] = getHours + Math.floor(Math.random() * 3) + 1;
-    console.log(hungry.timer + ' hungryTimer from hungryLevel2');
 
+    currentDate.setHours(currentDate.getHours() + (Math.floor(Math.random() * 3) + 4));
+    console.log(currentDate + ' currentDate updated');
+
+    const dateUpdateNumeric = updateDateNumeric(currentDate);
+    console.log(dateUpdateNumeric + ' dateUpdate numeric');
+
+    hungry.timer.push(dateUpdateNumeric);
+    console.log(hungry.timer + ' hungry.timers dateUpdateNumeric');
   
   } else if (hungry.level === 3) {
-    hungry.timer[1] = getHours + Math.floor(Math.random() * 3) + 2;
-    console.log(hungry.timer + ' hungryTimer from hungryLevel3');
+
+    currentDate.setHours(currentDate.getHours() + (Math.floor(Math.random() * 3) + 8));
+    console.log(currentDate + ' currentDate updated');
+
+    const dateUpdateNumeric = updateDateNumeric(currentDate);
+    console.log(dateUpdateNumeric + ' dateUpdate numeric');
+
+    hungry.timer.push(dateUpdateNumeric);
+    console.log(hungry.timer + ' hungry.timers dateUpdateNumeric');
+
   } else if (hungry.level === 4) {
-    hungry.timer[2] = getHours + Math.floor(Math.random() * 3) + 4;
-    console.log(hungry.timer + ' hungryTimer from hungryLevel4');
+
+    currentDate.setHours(currentDate.getHours() + (Math.floor(Math.random() * 3) + 16));
+    console.log(currentDate + ' currentDate updated');
+
+    const dateUpdateNumeric = updateDateNumeric(currentDate);
+    console.log(dateUpdateNumeric + ' dateUpdate numeric');
+
+    hungry.timer.push(dateUpdateNumeric);
+    console.log(hungry.timer + ' hungry.timers dateUpdateNumeric');
+
   };
+
   localStorage.setItem('hungry', JSON.stringify(hungry));
-  console.log('hungryStored updated')
+  console.log('hungryStored updated');
+  console.log(storedHungry);
   
 }
 
 const getHungry = () => {
-  const currentMinutes = new Date().getMinutes();
-  if (hungry.timer.includes(currentMinutes)) {
+  const newDate = new Date();
+  console.log('getHungry');
+
+  currentDate = updateDateNumeric(newDate);
+  if (hungry.timer.some(time => time !== '' && time <= currentDate)) {
     console.log(hungry.level + '-1 getHungry')
     hungry.level -= 1;
     hungryLevelDisplay(hungry.level);
-    hungry.timer.splice(hungry.timer.indexOf(currentMinutes), 1);
+    hungry.timer = hungry.timer.filter(time => time === '' || time > currentDate);
+    localStorage.setItem('hungry', JSON.stringify(hungry));
+  } else {
+    console.log(currentDate + ' < ' + hungry.timer)
   };
-  console.log(currentMinutes);
+
+  console.log(currentDate);
   
   localStorage.setItem('hungry', JSON.stringify(hungry));
+  hungryLevelDisplay(storedHungry.level);
   console.log('hungryStored updated')
 }
 
-setInterval(getHungry, 60000);
+
+setInterval(getHungry, 360000);
 
 const setPoopTimer = () => {
-  var getHours = new Date().getMinutes();
-  console.log(getHours + ' getHours');
+  const currentDate = new Date();  
+  console.log(currentDate + ' currentDate');
   if (poop.level === 2) {
-    poop.timer[0] = getHours + Math.floor(Math.random() * 3) + 1;
-    console.log(poop.timer + ' poopTimer from poopLevel2');
+
+    currentDate.setHours(currentDate.getHours() + (Math.floor(Math.random() * 3) + 4));
+    console.log(currentDate + ' currentDate updated');
+
+    const dateUpdateNumeric = updateDateNumeric(currentDate);
+    console.log(dateUpdateNumeric + ' dateUpdate numeric');
+
+    poop.timer.push(dateUpdateNumeric);
+    console.log(poop.timer + ' poop.timers dateUpdateNumeric');
+  
   } else if (poop.level === 3) {
-    poop.timer[1] = getHours + Math.floor(Math.random() * 3) + 2;
-    console.log(poop.timer + ' poopTimer from poopLevel3');
+
+    currentDate.setHours(currentDate.getHours() + (Math.floor(Math.random() * 3) + 8));
+    console.log(currentDate + ' currentDate updated');
+
+    const dateUpdateNumeric = updateDateNumeric(currentDate);
+    console.log(dateUpdateNumeric + ' dateUpdate numeric');
+
+    poop.timer.push(dateUpdateNumeric);
+    console.log(poop.timer + ' poop.timers dateUpdateNumeric');
+
   } else if (poop.level === 4) {
-    poop.timer[2] = getHours + Math.floor(Math.random() * 3) + 4;
-    console.log(poop.timer + ' poopTimer from poopLevel4');
+
+    currentDate.setHours(currentDate.getHours() + (Math.floor(Math.random() * 3) + 16));
+    console.log(currentDate + ' currentDate updated');
+
+    const dateUpdateNumeric = updateDateNumeric(currentDate);
+    console.log(dateUpdateNumeric + ' dateUpdate numeric');
+
+    poop.timer.push(dateUpdateNumeric);
+    console.log(poop.timer + ' poop.timers dateUpdateNumeric');
+
   };
 
   localStorage.setItem('poop', JSON.stringify(poop));
-  console.log('poopStored updated')
-  
+  console.log('storedPoop updated');
+  console.log(storedPoop);
 }
 
 const getPoop = () => {
-  const currentMinutes = new Date().getMinutes();
-  if (poop.timer.includes(currentMinutes)) {
+  console.log('getPoop');
+
+  currentDate = updateDateNumeric(newDate);
+  if (poop.timer.some(time => time !== '' && time <= currentDate)) {
     console.log(poop.level + '-1 getPoop')
     poop.level -= 1;
     poopLevelDisplay(poop.level);
-    poop.timer.splice(poop.timer.indexOf(currentMinutes), 1);
+    poop.timer = poop.timer.filter(time => time === '' || time > currentDate);
+    localStorage.setItem('poop', JSON.stringify(poop));
   };
-
+  console.log(currentDate);
+  
   localStorage.setItem('poop', JSON.stringify(poop));
-  console.log('poopStored updated')
+  poopLevelDisplay(storedPoop.level);
+  console.log('storedPoop updated')
 }
 
 setInterval(getPoop , 3600000);
@@ -188,35 +268,67 @@ setInterval(getPoop , 3600000);
 
 
 const setHateTimer = () => {
-  var getHours = new Date().getMinutes();
-  console.log(getHours + ' getHours');
-  if(love.level === 2) {
-  love.timer[0] = getHours + Math.floor(Math.random() * 3) + 1;
-  console.log(love.timer + ' hateTimer from loveTimer2');
+  const currentDate = new Date();  
+  console.log(currentDate + ' currentDate');
+  if (love.level === 2) {
+
+    currentDate.setHours(currentDate.getHours() + (Math.floor(Math.random() * 3) + 4));
+    console.log(currentDate + ' currentDate updated');
+
+    const dateUpdateNumeric = updateDateNumeric(currentDate);
+    console.log(dateUpdateNumeric + ' dateUpdate numeric');
+
+    love.timer.push(dateUpdateNumeric);
+    console.log(love.timer + ' love.timers dateUpdateNumeric');
+  
   } else if (love.level === 3) {
-    love.timer[1] = getHours + Math.floor(Math.random() * 3) + 2;
-    console.log(love.timer + ' hateTimer from loveLevel3');
+
+    currentDate.setHours(currentDate.getHours() + (Math.floor(Math.random() * 3) + 8));
+    console.log(currentDate + ' currentDate updated');
+
+    const dateUpdateNumeric = updateDateNumeric(currentDate);
+    console.log(dateUpdateNumeric + ' dateUpdate numeric');
+
+    love.timer.push(dateUpdateNumeric);
+    console.log(love.timer + ' love.timers dateUpdateNumeric');
+
   } else if (love.level === 4) {
-    love.timer[2] = getHours + Math.floor(Math.random() * 3) + 4;
-    console.log(love.timer + ' loveTimer from loveLevel4');
+
+    currentDate.setHours(currentDate.getHours() + (Math.floor(Math.random() * 3) + 16));
+    console.log(currentDate + ' currentDate updated');
+
+    const dateUpdateNumeric = updateDateNumeric(currentDate);
+    console.log(dateUpdateNumeric + ' dateUpdate numeric');
+
+    love.timer.push(dateUpdateNumeric);
+    console.log(love.timer + ' love.timers dateUpdateNumeric');
+
   };
 
   localStorage.setItem('love', JSON.stringify(love));
-  console.log('loveStored updated')
+  console.log('storedLove updated');
+  console.log(storedLove);
   
 }
 
 const getHate = () => {
-  const currentMinutes = new Date().getMinutes();
-  if (love.timer.includes(currentMinutes)) {
+  console.log('getHate');
+
+  currentDate = updateDateNumeric(newDate);
+  if (love.timer.some(time => time !== '' && time <= currentDate)) {
     console.log(love.level + '-1 getHate')
     love.level -= 1;
     loveLevelDisplay(love.level);
-    love.timer.splice(love.timer.indexOf(currentMinutes), 1);
+    love.timer = love.timer.filter(time => time === '' || time > currentDate);
+    localStorage.setItem('love', JSON.stringify(love));
+  } else{
+    console.log(currentDate + ' > ' + love.timer)
   };
-
+  console.log(currentDate );
+  
   localStorage.setItem('love', JSON.stringify(love));
-  console.log('loveStored updated')
+  loveLevelDisplay(storedLove.level);
+  console.log('storedLove updated')
 }
 
 setInterval(getHate , 3600000);
@@ -237,7 +349,7 @@ const hungryLevelDisplay = () => {
     hungryStatus2.classList.add('none');
     hungryStatus3.classList.add('none');
 
-    setHungryTimer();
+    console.log(storedHungry.timer[0]);
 
   } else if (hungry.level === 3) {
 
@@ -246,7 +358,7 @@ const hungryLevelDisplay = () => {
     hungryStatus2.classList.remove('none');
     hungryStatus3.classList.add('none');
 
-    setHungryTimer();
+  
 
   } else if (hungry.level === 4) {
 
@@ -254,8 +366,6 @@ const hungryLevelDisplay = () => {
     hungryStatus1.classList.add('none');
     hungryStatus2.classList.add('none');
     hungryStatus3.classList.remove('none');
-
-    setHungryTimer();
 
   }
 }
@@ -332,8 +442,6 @@ const poopLevelDisplay = () => {
 }
 
 
-
-
 feedIcon.addEventListener('click', function() {
   if (hungry.level !== 4) {
 
@@ -352,6 +460,7 @@ feeding.addEventListener('animationend', function() {
   feeding.classList.remove('feeding-animation');
   hungry.level += 1;
   console.log(hungry.level)
+  setHungryTimer();
 
   localStorage.setItem('hungry', JSON.stringify(hungry));
   console.log('hungryStored updated');
@@ -391,6 +500,7 @@ washing.addEventListener('animationend', function () {
   poopLevelDisplay(poop.level);
 });  
 
+
 const lovingStart = () => {
 
   if (hungry.level !== 4 || poop.level !== 4) {
@@ -417,18 +527,20 @@ const lovingEnd = () => {
 
   kitipetBody.classList.add('default-animation');
   kitipetBody.classList.remove('loving-animation');
-  console.log('loveLevel +1')
-  love.level += 1;
+  
+  
+  if (love.level < 4){
+    love.level += 1;
+    console.log('loveLevel +1')
+    localStorage.setItem('love', JSON.stringify(love));
+    console.log('loveStored updated')
 
-  localStorage.setItem('love', JSON.stringify(love));
-  console.log('loveStored updated')
+    loveLevelDisplay(love.level);
+  }
 
-  loveLevelDisplay(love.level);
 } 
 
-
 loveIcon.addEventListener('click', lovingStart)
-
 
 const petting = () => {
   let isMouseDown = false;
@@ -453,12 +565,3 @@ const petting = () => {
 
 }
 petting()
-
-
-// local storage
-
-
-
-
-
-
