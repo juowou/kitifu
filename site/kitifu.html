@@ -8,24 +8,40 @@
   <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
+    <style>
+    * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+        
+        user-select: none;
+      }</style>
+    
     <div class="kitifu center">
         <img class="case" src="images/case1.svg" alt="case">
         <div class="screen">
             <img class="background" src="images/background.svg" alt="background">
+            <div id="back" class="back">
+                <img id="backOn" class="backOn none" src="images/backOn.svg" alt="backOn">
+                <img id="backOff" class="backOff block" src="images/backOff.svg" alt="backOff">
+            </div>
             <img class="network" src="images/network.svg" alt="background">
-            <img class="status" src="images/status.svg" alt="status">
+            <div class="userStatus" alt="userStatus">
+                <img class="online status block" src="images/online.svg" alt="online">
+                <img class="offline status none" src="images/offline.svg" alt="offline">
+            </div>
             <div id="clock"></div>
         </div>
-        <div id="homescreen" class="screen block">
+        <div id="homeScreen" class="screen block">
             <img id="kiti" class="kiti" src="images/kiti.svg" alt="kiti">
-            <img class="friends" src="images/friends.svg" alt="friends">                                
+            <img id="friends" class="friends" src="images/friends.svg" alt="friends">                                
             <img class="mp3" src="images/mp3.svg" alt="mp3">                                
             <img class="map" src="images/map.svg" alt="map">                    
             <img class="messages" src="images/messages.svg" alt="messages">          
             <img class="settings" src="images/settings.svg" alt="settings">                     
             <img class="profile" src="images/profile.svg" alt="settings">
         </div>
-        <div id="kitiscreen" class="screen none">
+        <div id="kitiScreen" class="screen none">
             <div id="hungryStatus" class="hungry-status">
                 <img id="hungryStatus0" class="hungry-status-0" src="images/hungryStatus0.svg" alt="hungryStatus0">
                 <img id="hungryStatus1" class="hungry-status-1" src="images/hungryStatus1.svg" alt="hungryStatus1">
@@ -44,7 +60,6 @@
                 <img src="images/poopStatus3.svg" id="poopStatus3" class="poop-status-3 none" alt="poopStatus3">
             </div>
             <img id="closet" class="closet" src="images/closet.svg" alt="closet">
-            <img id="backIcon" class="back" src="images/back.svg" alt="backIcon">
             <div id="kitipet" class="kitipet">
                 <img src="images/kitipetBody.svg" id="kitipetBody" class="kitipetBody default-animation" draggable="false" alt="kitipetBody">
                 <img src="images/kitipetHead.svg" id="kitipetHead" class="kitipetHead default-animation" draggable="false" alt="kitipetHead">
@@ -64,8 +79,100 @@
             <img id="playIcon" class="play" src="images/play.svg" alt="play">
             <img id="connectIcon" class="connect" src="images/connect.svg" alt="connect">
         </div>
+        <div id="friendScreen" class="screen none">
+            <div id="scrollbar" class="scrollbar">
+                <img id="scrollTrack" class="scrollTrack" src="images/scrollTrack.svg">
+                <img id="scrollThumb" class="scrollThumb" src="images/scrollThumb.svg">
+            </div>
+            <div id="friendListContainer" class="friendListContainer">
+                <div id="friendList" class="friendList">
+                <div id="friendCard1" class="friendCard 1">
+                    <div id="friendStatus" class="friendStatus">
+                        <img class="online status block" src="images/online.svg" alt="online">
+                        <img class="offline status none" src="images/offline.svg" alt="offline">
+                    </div>
+                    <div id="friendName" class="friendName">juowou</div>
+                    <div id="friendAvaContainer" class="friendAvaContainer">
+                        <img id="friendAva1" class="friendAva" src="images/friendAva.svg" alt="friendAva">
+                    </div>
+                </div>
+                <div id="friendCard2" class="friendCard 2">
+                    <div id="friendStatus" class="friendStatus">
+                        <img class="online status block" src="images/online.svg" alt="online">
+                        <img class="offline status none" src="images/offline.svg" alt="offline">
+                    </div>
+                    <div id="friendName" class="friendName">nanu</div>
+                    <div id="friendAvaContainer" class="friendAvaContainer">
+                        <img id="friendAva1" class="friendAva" src="images/friendAvaNanu.svg" alt="friendAva">
+                    </div>
+                </div>
+                <div id="friendCard1" class="friendCard 1">
+                    <div id="friendStatus" class="friendStatus">
+                        <img class="online status block" src="images/online.svg" alt="online">
+                        <img class="offline status none" src="images/offline.svg" alt="offline">
+                    </div>
+                    <div id="friendName" class="friendName">sophia</div>
+                    <div id="friendAvaContainer" class="friendAvaContainer">
+                        <img id="friendAva1" class="friendAva" src="images/friendAva.svg" alt="friendAva">
+                    </div>
+                </div>
+                <div id="friendCard2" class="friendCard 2">
+                    <div id="friendStatus" class="friendStatus">
+                        <img class="online status block" src="images/online.svg" alt="online">
+                        <img class="offline status none" src="images/offline.svg" alt="offline">
+                    </div>
+                    <div id="friendName" class="friendName">juowouuuuuuuuuuuuuuuuuuuuuuuuuuuuu</div>
+                    <div id="friendAvaContainer" class="friendAvaContainer">
+                        <img id="friendAva1" class="friendAva" src="images/friendAva.svg" alt="friendAva">
+                    </div>
+                </div>   
+                <div id="friendCard1" class="friendCard 1">
+                    <div id="friendStatus" class="friendStatus">
+                        <img class="online status block" src="images/online.svg" alt="online">
+                        <img class="offline status none" src="images/offline.svg" alt="offline">
+                    </div>
+                    <div id="friendName" class="friendName">juowouuuuuuuuuuuuuuuuuuuuuuuuuuuuu</div>
+                    <div id="friendAvaContainer" class="friendAvaContainer">
+                        <img id="friendAva1" class="friendAva" src="images/friendAva.svg" alt="friendAva">
+                    </div>
+                </div>
+                <div id="friendCard2" class="friendCard 2">
+                    <div id="friendStatus" class="friendStatus">
+                        <img class="online status block" src="images/online.svg" alt="online">
+                        <img class="offline status none" src="images/offline.svg" alt="offline">
+                    </div>
+                    <div id="friendName" class="friendName">juowouuuuuuuuuuuuuuuuuuuuuuuuuuuuu</div>
+                    <div id="friendAvaContainer" class="friendAvaContainer">
+                        <img id="friendAva1" class="friendAva" src="images/friendAva.svg" alt="friendAva">
+                    </div>
+                </div>   
+                 <div id="friendCard1" class="friendCard 1">
+                    <div id="friendStatus" class="friendStatus">
+                        <img class="online status block" src="images/online.svg" alt="online">
+                        <img class="offline status none" src="images/offline.svg" alt="offline">
+                    </div>
+                    <div id="friendName" class="friendName">juowouuuuuuuuuuuuuuuuuuuuuuuuuuuuu</div>
+                    <div id="friendAvaContainer" class="friendAvaContainer">
+                        <img id="friendAva1" class="friendAva" src="images/friendAva.svg" alt="friendAva">
+                    </div>
+                </div>
+                <div id="friendCard2" class="friendCard 2">
+                    <div id="friendStatus" class="friendStatus">
+                        <img class="online status block" src="images/online.svg" alt="online">
+                        <img class="offline status none" src="images/offline.svg" alt="offline">
+                    </div>
+                    <div id="friendName" class="friendName">juowouuuuuuuuuuuuuuuuuuuuuuuuuuuuu</div>
+                    <div id="friendAvaContainer" class="friendAvaContainer">
+                        <img id="friendAva1" class="friendAva" src="images/friendAva.svg" alt="friendAva">
+                    </div>
+                </div>       
+                </div>
+            </div>
+        </div>
     </div>
 
     <script src="script.js"></script>
+    <script src="kitipet.js"></script>
+    <script src="friends.js"></script>
 </body>
 </html>

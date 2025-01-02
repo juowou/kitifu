@@ -10,15 +10,19 @@
     padding: 0;
     margin: 0;
     box-sizing: border-box;
-    font-family: 'Untitled1', sans-serif;
+    
     user-select: none;
   }
 
-  @font-face {
-    font-family: 'Untitled1';
+@font-face {
+    font-family: 'kitifont';
     src: url('../fonts/fonte.otf') format('opentype');
 }
 
+@font-face {
+    font-family: nokiafc22;
+    src: url('../fonts/nokia_cellphone/nokiafc22.ttf') format('truetype');
+}
 
 body {
     background-color: black;
@@ -31,6 +35,9 @@ body {
 .block {
     display: block;
 }
+
+/* 1px = 0.2rem */
+/* 1rem = 5px */
 
 .kitifu {
     width: 24rem;
@@ -68,20 +75,49 @@ body {
     z-index: -999;
 }
 
+.back {
+    width: 1rem;
+    height: 1rem;
+    position: absolute;
+    top: 0.6rem;
+    left: 0.6rem;
+    z-index: 999;
+}
+
+.backOn {
+    width: 1rem;
+    height: 1rem;
+    position: absolute;
+    z-index: 999;
+}
+
+.backOff {
+    width: 1rem;
+    height: 1rem;
+    position: absolute;
+    z-index: 999;
+}
+
 .network {
     width: 1rem;
     height: 0.6rem;
     position: absolute;
     top: 0.8rem;
-    left: 0.8rem;
+    left: 2rem;
+}
+
+.userStatus {
+    width: 0.6rem;
+    height: 0.6rem;
+    position: absolute;
+    top: 0.8rem;
+    left: 3.4rem;
 }
 
 .status {
     width: 0.6rem;
     height: 0.6rem;
     position: absolute;
-    top: 0.8rem;
-    left: 2.2rem;
 }
 
 #clock{
@@ -99,6 +135,7 @@ body {
     color: transparent;
     position: absolute;
     font-size: 1.383rem;
+    font-family: 'kitifont', sans-serif;
 }
 
 
@@ -253,14 +290,6 @@ body {
 }
 
 .closet {
-    width: 1rem;
-    height: 1rem;
-    position: absolute;
-    top: 1.8rem;
-    left: 7.2rem;
-}
-
-.back {
     width: 1rem;
     height: 1rem;
     position: absolute;
@@ -513,4 +542,89 @@ body {
     75%{ transform: translateY(4.8rem); clip-path: polygon(0 0, 100% 0%, 100% 23%, 0% 23%);}
     87.5%{ transform: translateY(5.6rem);clip-path: polygon(0 0, 100% 0%, 100% 0, 0% 0); }
     100%{ transform: translateY(5.6rem); clip-path: polygon(0 0, 100% 0%, 100% 0, 0% 0);}
+}
+
+
+.scrollbar {
+    height: 7rem;
+    width: 0.8rem;
+    position: absolute;
+    top: 2.2rem;
+    left: 8.6rem;
+    user-select: none;
+}
+
+.scrollTrack {
+    height: 6.8rem;
+    width: 0.8rem;
+    position: absolute;
+    top: 0.2rem;
+}
+
+.scrollThumb {
+    height: 1rem;
+    width: 0.8rem;
+    position: absolute;
+    transform: translateY(0rem);
+    user-select: none;
+}
+
+
+
+.friendListContainer {
+    height: 7rem;
+    width: 7.6rem;
+    position: relative;
+    top: 2.2rem;
+    left: 0.8rem;
+    overflow: hidden;
+}
+
+.friendList {
+    height: auto;
+    width: 7.6rem;
+    position: absolute;
+    flex-direction: column; 
+    gap: 0.2rem;
+    transform: translateY(0rem);
+}
+
+.friendCard {
+    height: 1.4rem;
+    width: 7.6rem;
+    position: relative;
+    margin-bottom: 0.2rem;
+}
+
+.friendStatus {
+    height: 0.6rem;
+    width: 0.6rem;
+    position: absolute;
+    margin-top: 0.4rem;
+}
+
+.friendName {
+    height: 1.4rem;
+    width: 5.2rem;
+    position: absolute;
+    left: 1rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: .9rem;
+    font-family: 'nokiafc22', sans-serif;
+    color: var(--green3);
+
+}
+
+.friendAvaContainer {
+    height: 1.4rem;
+    width: 1.4rem;
+    position: absolute;
+    left: 6.2rem;
+}
+
+.friendAva {
+    height: 1.4rem;
+    width: 1.4rem;
+    position: absolute;
 }
