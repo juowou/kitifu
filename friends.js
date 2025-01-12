@@ -1,6 +1,8 @@
 const friendList = document.getElementById("friendList");
 const scrollThumb = document.getElementById("scrollThumb");
 const scrollTrack = document.getElementById("scrollTrack")
+const searchBarInput = document.getElementById("searchBarInput");
+const searchBarContainer = document.getElementById("searchBarContainer");
 
 
 let scrollPosition = 0
@@ -95,3 +97,20 @@ const scrollGrab = () => {
 
 scrollGrab()
 
+
+
+searchBarContainer.addEventListener("click", function() {
+    if (searchBarContainer.style.marginLeft === '1.4rem') {
+        searchBarContainer.style.marginLeft = '0rem'
+    } else {
+        searchBarContainer.style.marginLeft = '1.4rem'
+    }
+})
+
+document.addEventListener('click', function(event) {
+    // Check if the click happened outside of the div
+    if (!searchBarContainer.contains(event.target)) {
+      // Reset the marginLeft to '0rem' when clicking outside
+      searchBarContainer.style.marginLeft = '1.4rem';
+    }
+  });
