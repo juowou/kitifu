@@ -3,6 +3,7 @@ const scrollThumb = document.getElementById("scrollThumb");
 const scrollTrack = document.getElementById("scrollTrack")
 const searchBarInput = document.getElementById("searchBarInput");
 const searchBarContainer = document.getElementById("searchBarContainer");
+const searchBarOutput = document.getElementById("searchBarOutput")
 
 
 let scrollPosition = 0
@@ -100,17 +101,23 @@ scrollGrab()
 
 
 searchBarContainer.addEventListener("click", function() {
-    if (searchBarContainer.style.marginLeft === '1.4rem') {
-        searchBarContainer.style.marginLeft = '0rem'
-    } else {
-        searchBarContainer.style.marginLeft = '1.4rem'
+    if (searchBarContainer.style.left === '1.4rem') {
+        searchBarContainer.style.left = '0rem';
+      
+        //searchBarInput.classList.remove('none');
     }
 })
 
 document.addEventListener('click', function(event) {
-    // Check if the click happened outside of the div
     if (!searchBarContainer.contains(event.target)) {
-      // Reset the marginLeft to '0rem' when clicking outside
-      searchBarContainer.style.marginLeft = '1.4rem';
+      searchBarContainer.style.left = '1.4rem';
+      //searchBarInput.classList.add('none');
     }
   });
+
+
+searchBarOutput.addEventListener('input', function() {
+    const userInput = searchBarOutput.innerText;
+    searchBarInput.value = `${userInput}`
+})
+

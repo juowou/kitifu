@@ -9,7 +9,7 @@
 * {
     padding: 0;
     margin: 0;
-    box-sizing: border-box;
+ 
     
     user-select: none;
   }
@@ -575,21 +575,14 @@ body {
 
 .friendListContainer {
     height: 7rem;
-    width: 7.6rem;
+    width: 7.8rem;
     position: relative;
     top: 2.2rem;
-    left: 0.8rem;
+    left: 0.6rem;
     overflow: hidden;
 }
 
-.friendList {
-    
-    width: 7.6rem;
-    position: absolute;
-    flex-direction: column; 
-    gap: 0.2rem;
-    transform: translateY(0rem);
-}
+
 
 .friendSearchBar {
     height: 1.4rem;
@@ -607,33 +600,42 @@ body {
 
 .searchBarContainer {
     height: 1.4rem;
-    width: 6rem;
+    width: 6.2rem;
     position: absolute;
-    margin-left: 1.4rem;
     overflow: hidden;
-    transition: margin-left 0.25s steps(3);
+    transition: left 0.25s steps(3);
 }
 
 .searchBarInput {
+    position: absolute;
+    opacity: 0%;
+    overflow: hidden;
+   
+
+}
+
+.searchBarOutput {
     height: 1.4rem;
-    width: 6.2rem;
+    width: 6rem;
     position: absolute;
     z-index: 999;
     background: none;
     border: none;
     font-family: nokiafc22;
     color: var(--green1);
-    caret-color: transparent; /* Hides the default caret */
+    caret-color: transparent;
+    overflow-inline:clip;
+    outline: none;
+    
+    text-align: inherit;
+    box-sizing: content-box;
+    
 }
 
-.customCaret {
-    height: 0.8rem;
-    width: 0.2rem;
-    background-color: var(--green1);
-    position: relative;
-    top: 0.2rem;
-    left: 0.4rem;
-    z-index: 999;
+.searchBarOutput::selection {
+        background-color: var(--green1); 
+        color: var(--green4); 
+      
 }
 
 .searchBar {
@@ -647,6 +649,16 @@ body {
     width: 1.8rem;
     position: absolute;
     margin-left: 5.8rem;
+    z-index: 999;
+}
+
+.friendList {
+    left: 0.2rem;
+    width: 7.6rem;
+    position: absolute;
+    flex-direction: column; 
+    gap: 0.2rem;
+    transform: translateY(0rem);
 }
 
 .friendCard {
