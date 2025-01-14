@@ -1,9 +1,11 @@
 const friendList = document.getElementById("friendList");
 const scrollThumb = document.getElementById("scrollThumb");
 const scrollTrack = document.getElementById("scrollTrack")
-const searchBarInput = document.getElementById("searchBarInput");
-const searchBarContainer = document.getElementById("searchBarContainer");
-const searchBarOutput = document.getElementById("searchBarOutput")
+const searchbarInput = document.getElementById("searchbarInput");
+const searchbarContainer = document.getElementById("searchbarContainer");
+const searchbarOutput = document.getElementById("searchbarOutput")
+const searchbarImg = document.getElementById("searchbarImg")
+const searchbarImgContainer = document.getElementById("searchbarImgContainer")
 
 
 let scrollPosition = 0
@@ -100,24 +102,26 @@ scrollGrab()
 
 
 
-searchBarContainer.addEventListener("click", function() {
-    if (searchBarContainer.style.left === '1.4rem') {
-        searchBarContainer.style.left = '0rem';
+searchbarContainer.addEventListener("click", function() {
+    if (searchbarContainer.style.left === '1.4rem') {
+        searchbarContainer.style.left = '0rem';
+        searchbarImgContainer.style.left = '0rem'
       
         //searchBarInput.classList.remove('none');
     }
 })
 
 document.addEventListener('click', function(event) {
-    if (!searchBarContainer.contains(event.target)) {
-      searchBarContainer.style.left = '1.4rem';
+    if (!searchbarContainer.contains(event.target)) {
+      searchbarContainer.style.left = '1.4rem';
+      searchbarImgContainer.style.left = '1.4rem'
       //searchBarInput.classList.add('none');
     }
   });
 
 
-searchBarOutput.addEventListener('input', function() {
-    const userInput = searchBarOutput.innerText;
-    searchBarInput.value = `${userInput}`
+searchbarOutput.addEventListener('input', function() {
+    const userInput = searchbarOutput.innerText;
+    searchbarInput.value = `${userInput}`
 })
 

@@ -598,7 +598,7 @@ body {
     margin-top: 0.2rem;
 }
 
-.searchBarContainer {
+.searchbarContainer {
     height: 1.4rem;
     width: 6.2rem;
     position: absolute;
@@ -606,7 +606,7 @@ body {
     transition: left 0.25s steps(3);
 }
 
-.searchBarInput {
+.searchbarInput {
     position: absolute;
     opacity: 0%;
     overflow: hidden;
@@ -614,17 +614,17 @@ body {
 
 }
 
-.searchBarOutput {
+.searchbarOutput {
     height: 1.4rem;
-    width: 6rem;
+    width: 5.6rem;
     position: absolute;
     z-index: 999;
     background: none;
     border: none;
     font-family: nokiafc22;
     color: var(--green1);
-    caret-color: transparent;
-    overflow-inline:clip;
+    /*caret-color: transparent;*/
+    overflow-inline:hidden;
     outline: none;
     
     text-align: inherit;
@@ -632,16 +632,27 @@ body {
     
 }
 
-.searchBarOutput::selection {
+.searchbarOutput::selection {
         background-color: var(--green1); 
         color: var(--green4); 
       
 }
 
-.searchBar {
+.searchbarImgContainer {
+    height: 1.4rem;
+    width: 6rem;
+    position: absolute;
+    left: 1.4rem;
+    overflow: hidden;
+    transition: left 0.25s steps(3);
+}
+
+.searchbarImg {
     height: 1.4rem;
     width: 6.2rem;
     position: absolute;
+    
+    transition: left 0.25s steps(3);
 }
 
 .addFriendIcon {
