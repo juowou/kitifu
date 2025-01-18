@@ -604,6 +604,7 @@ body {
     position: absolute;
     overflow: hidden;
     transition: left 0.25s steps(3);
+    z-index: 9999;
 }
 
 .searchbarInput {
@@ -684,6 +685,14 @@ body {
     width: 0.6rem;
     position: absolute;
     margin-top: 0.4rem;
+}
+
+.friendStatus .online {
+    z-index: 999;
+}
+
+.friendStatus .ofline {
+    z-index: 0;
 }
 
 .friendName {
