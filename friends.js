@@ -201,7 +201,7 @@ const friendListAssembly = () => {
                     </div>
                     <div id="friendName" class="friendName">${friendCards[key].name}</div>
                     <div id="friendAvaContainer" class="friendAvaContainer">
-                        <img id="friendAva1" class="friendAva" src=${friendCards[key].ava} alt="friendAva">
+                        <img id="friendAva${friendCards[key]}" class="friendAva" src=${friendCards[key].ava} alt="friendAva">
                     </div>
                 </div>`
     }
@@ -209,3 +209,37 @@ const friendListAssembly = () => {
 }
 
 friendListAssembly()
+
+
+const friendCard = document.querySelectorAll('.friendCard')
+const privateMessageScreen = document.getElementById('privateMessageScreen')
+
+
+friendCard.forEach(friendCard => {
+    friendCard.addEventListener('click', function() {
+        
+        const friendPrivateMessage = document.getElementById((friendCard.querySelector('.friendName').innerText) + 'PrivateMessage');
+
+        friendScreen.classList.add('none');
+        friendScreen.classList.remove('block');
+        
+        friendPrivateMessage.classList.remove('none');
+        friendPrivateMessage.classList.add('block');
+        privateMessageScreen.classList.remove('none');
+        privateMessageScreen.classList.add('block');
+    
+        
+    
+        //pelo sim pelo não
+        backOn.classList.add('block');
+        backOn.classList.remove('none');
+        backOff.classList.add('none');
+        backOff.classList.remove('block');
+
+        backOn.addEventListener('click', function() {
+            friendPrivateMessage.classList.remove('block');
+            friendPrivateMessage.classList.add('none')
+        })
+    })
+})
+

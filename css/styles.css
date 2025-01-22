@@ -139,6 +139,8 @@ body {
 }
 
 
+/* homeScreen */
+
 .kiti {
     width: 2.2rem;
     height: 2.2rem;
@@ -194,6 +196,8 @@ body {
     top: 4.6rem;
     right: 1.4rem;
 }
+
+/* kitiscreen */
 
 .hungry-status {
     width: 1rem;
@@ -545,6 +549,8 @@ body {
 }
 
 
+/* friendScreen */
+
 .scrollbar {
     height: 7rem;
     width: 0.8rem;
@@ -719,4 +725,41 @@ body {
     height: 1.4rem;
     width: 1.4rem;
     position: absolute;
+}
+
+/* pmScreen */
+
+.pmTopBar {
+    height: 1.2rem;
+    width: 8rem;
+    position: absolute;
+    top: 1.6rem;
+    left: 0.6rem;
+}
+
+.topBarIcon {
+    height: 0.8rem;
+    width: 1.4rem;
+    position: absolute;
+    top: 0.2rem;
+}
+
+.topBarIcon.group {
+    left: 0.2rem;
+}
+
+.topBarIcon.follow {
+    left: 1.8rem;
+}
+
+.topBarIcon.notificationsOn {
+    left: 4.8rem;
+}
+
+.topBarIcon.notificationsOff {
+    left: 4.8rem;
+}
+
+.topBarIcon.other {
+    left: 6.4rem;
 }

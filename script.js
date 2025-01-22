@@ -52,6 +52,9 @@ backOn.addEventListener('click', function() {
   kitiscreen.classList.remove('block');
   friendScreen.classList.remove('block');
   friendScreen.classList.add('none');
+  privateMessageScreen.classList.remove('block');
+  privateMessageScreen.classList.add('none');
+  
 
   backOn.classList.remove('block');
   backOn.classList.add('none');
