@@ -21,6 +21,8 @@
         <img class="case" src="images/case1.svg" alt="case">
         <div class="screen">
             <img class="background" src="images/background.svg" alt="background">
+            <img class="topBar left" src="images/topBarLeft.svg" alt="topBarLeft">
+            <img class="topBar right" src="images/topBarRight.svg" alt="topBarRight">
             <div id="back" class="back">
                 <img id="backOn" class="backOn none" src="images/backOn.svg" alt="backOn">
                 <img id="backOff" class="backOff block" src="images/backOff.svg" alt="backOff">
@@ -82,8 +84,8 @@
         <div id="friendScreen" class="screen none">
             <input type="text" id="searchbarInput" class="searchbarInput" placeholder="noone.."/>
             <div id="scrollbar" class="scrollbar">
-                <img id="scrollTrack" class="scrollTrack" src="images/scrollTrack.svg" draggable="false">
-                <img id="scrollThumb" class="scrollThumb" src="images/scrollThumb.svg" draggable="false">
+                <img id="scrollTrackFriendList" class="scrollTrack" src="images/scrollTrack.svg" draggable="false">
+                <img id="scrollThumbFriendList" class="scrollThumb" src="images/scrollThumb.svg" draggable="false">
             </div>
             <div id="friendListContainer" class="friendListContainer">
                 <div id="friendList" class="friendList">
@@ -105,31 +107,72 @@
                 </div>     
             </div>
         </div>
-        <div id="privateMessageScreen" class="screen none">
+        <div id="pmScreen" class="screen none">
+            <div id="scrollbar" class="scrollbar">
+                <img id="scrollTrackPmMessages" class="scrollTrack" src="images/scrollTrack.svg" draggable="false">
+                <img id="scrollThumbPmMessages" class="scrollThumb" src="images/scrollThumb.svg" draggable="false">
+            </div>
             <div id="pmTopBar" class="pmTopBar">
                 <img id="topBarIconGroup" class="topBarIcon group" src="images/topBarIconGroup.svg">
                 <img id="topBarIconFollow" class="topBarIcon follow" src="images/topBarIconFollow.svg">
+
+                <img id="liveChatFalse" class="liveChat false block" src="images/liveChatFalse.svg">
+                <img id="liveChatTrue" class="liveChat true none" src="images/liveChatTrue.svg">
+
                 <img id="topBarIconNotificationsOn" class="topBarIcon notificationsOn" src="images/topBarIconNotificationsOn.svg">
                 <img id="topBarIconNotificationsOff" class="topBarIcon notificationsOff none" src="images/topBarIconNotificationsOff.svg">
                 <img id="topBarIconOther" class="topBarIcon other" src="images/topBarIconOther.svg">
             </div>
-            <div id="scrollbar" class="scrollbar">
-                <img id="scrollTrack" class="scrollTrack" src="images/scrollTrack.svg" draggable="false">
-                <img id="scrollThumb" class="scrollThumb" src="images/scrollThumb.svg" draggable="false">
-                
-            </div>
-            <div id="juowouPrivateMessage" class="none">
-                <div id="pmChat" class="pmChat">
-                    <div id=pmMessages></div>
+           
+            <div id="pmChat" class="pmChat">
+                <div id="pmChatjuowou" class="pmChatUser none">
+                    <div id=pmChatContainer class="pmChatContainer">
+                        <div id="pmjuowou1737722302659" class="pmMessageContainer">
+                            <div id="pmBubbleContainer" class="pmBubbleContainer">
+                                <div id="pmBubbleLeft" class="pmBubbleLeft">
+                                    <img id="pmBubbleTL" class="pmBubbleTL" src="images/pmBubbleTL.svg">
+                                    <img id="pmBubbleML" class="pmBubbleML" src="images/pmBubbleML.svg">
+                                    <img id="pmBubbleBL" class="pmBubbleBL" src="images/pmBubbleBL.svg">
+                                </div>
+                                <div id="pmBubbleCenter" class="pmBubbleCenter">
+                                    <div id="pmText" class="pmText">hmppp,,</div>
+                                    <img id="pmBubbleBC" class="pmBubbleBC" src="images/pmBubbleBC.svg">
+                                </div>    
+                                <div id="pmBubbleRight" class="pmBubbleRight">
+                                    <img id="pmBubbleTR" class="pmBubbleTR" src="images/pmBubbleTR.svg">
+                                    <img id="pmBubbleMR" class="pmBubbleMR" src="images/pmBubbleMR.svg">
+                                    <img id="pmBubbleBR" class="pmBubbleBR" src="images/pmBubbleBR.svg">
+                                </div>
+                            </div>
+                            
+                        </div>
+                        <div id="pmuser1737722304056" class="pmMessageContainer">
+                            <div id="pmBubbleContainer" class="pmBubbleContainer">
+                                <div id="pmBubbleLeft" class="pmBubbleLeft">
+                                    <img id="pmBubbleTL" class="pmBubbleTL" src="images/pmBubbleTL.svg">
+                                    <img id="pmBubbleML" class="pmBubbleML" src="images/pmBubbleML.svg">
+                                    <img id="pmBubbleBL" class="pmBubbleBL" src="images/pmBubbleBL.svg">
+                                </div>
+                                <div id="pmBubbleCenter" class="pmBubbleCenter">
+                                    <div id="pmText" class="pmText">porque a cena que eu tava mm a pensar era se isto tudo faz algum sentido</div>
+                                    <img id="pmBubbleBC" class="pmBubbleBC" src="images/pmBubbleBC.svg">
+                                </div>    
+                                <div id="pmBubbleRight" class="pmBubbleRight">
+                                    <img id="pmBubbleTR" class="pmBubbleTR" src="images/pmBubbleTR.svg">
+                                    <img id="pmBubbleMR" class="pmBubbleMR" src="images/pmBubbleMR.svg">
+                                    <img id="pmBubbleBR" class="pmBubbleBR" src="images/pmBubbleBR.svg">
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </div>
                 </div>
-                <div id="pmSendMessage"></div>
-            </div>
-            <div id="nanuPrivateMessage" class="none">
-                <div id="pmChat" class="pmChat">
+            
+                <div id="nanuPrivateMessage" class="none">
                     <div id=pmMessages>aaaaaaaaahahah</div>
                 </div>
-                <div id="pmSendMessage">pmSendMahahahahaessage</div>
             </div>
+            <div id="pmSendMessage"></div>
         </div>
     </div>
 </div>

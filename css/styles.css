@@ -56,23 +56,38 @@ body {
 .case {
     width: 24rem;
     height: 24rem;
-    position:absolute;
+    position: absolute;
 }
 
 
 .screen {
-    width: 10rem;
-    height: 10rem;
-    position:absolute;
+    width: 10.2rem;
+    height: 10.2rem;
+    position: absolute;
     top: 8.8rem;
-    left: 6.6rem;
+    left: 6.8rem;
 }
 
 .background {
-    width: 10rem;
-    height: 10rem;
-    position:absolute;
+    width: 10.2rem;
+    height: 10.2rem;
+    position: absolute;
     z-index: -999;
+}
+
+.topBar {
+    width: 4rem;
+    height: 1.4rem;
+    position: absolute;
+    top: 0.4rem;
+}
+
+.topBar.left {
+    left: 0.4rem;
+}
+
+.topBar.right {
+    left: 5.8rem;
 }
 
 .back {
@@ -121,11 +136,11 @@ body {
 }
 
 #clock{
-    /* top: -0.07rem*/
+    /* 0.2rem - 0.07rem = 0.13rem*/
 
     width: 6rem;
     top: 0.53rem;
-    left: 6rem;
+    left: 6.13rem;
     background: linear-gradient(to top,  var(--green4) 0%, 
     var(--green4) 44.5%, 
     var(--green3)  44.5%, 
@@ -203,7 +218,7 @@ body {
     width: 1rem;
     height: 1rem;
     position: absolute;
-    top: 1.8rem;
+    top: 2rem;
     left: 0.6rem;
 }
 
@@ -240,7 +255,7 @@ body {
     width: 1rem;
     height: 1rem;
     position: absolute;
-    top: 1.8rem;
+    top: 2rem;
     left: 1.8rem;
 }
 
@@ -273,7 +288,7 @@ body {
     width: 1.4rem;
     height: 2.8rem;
     position: absolute;
-    top: 5.2rem;
+    top: 5.4rem;
     left: 8rem;
 }
 
@@ -281,7 +296,7 @@ body {
     width: 1.4rem;
     height: 2.8rem;
     position: absolute;
-    top: 5.2rem;
+    top: 5.4rem;
     left: 8rem;
 }
 
@@ -289,7 +304,7 @@ body {
     width: 1.4rem;
     height: 2.8rem;
     position: absolute;
-    top: 5.2rem;
+    top: 5.4rem;
     left: 8rem; 
 }
 
@@ -297,7 +312,7 @@ body {
     width: 1rem;
     height: 1rem;
     position: absolute;
-    top: 1.8rem;
+    top: 2rem;
     left: 8.4rem;
 }
 
@@ -306,7 +321,7 @@ body {
     width: 5.2rem;
     height: 5.2rem;
     position:absolute;
-    top: 2.8rem;
+    top: 3.2rem;
     left: 2.2rem;
 }
 
@@ -335,7 +350,7 @@ body {
     width: 1rem;
     height: 1rem;
     position: absolute;
-    top: 8.4rem;
+    top: 8.6rem;
     left: 0.6rem;
     
 }
@@ -354,7 +369,7 @@ body {
     width: 1rem;
     height: 1rem;
     position: absolute;
-    top: 8.4rem;
+    top: 8.6rem;
     left: 2rem;
 }
 
@@ -372,7 +387,7 @@ body {
     width: 1rem;
     height: 1rem;
     position: absolute;
-    top: 8.4rem;
+    top: 8.6rem;
     left: 3.6rem;
 }
 
@@ -381,7 +396,7 @@ body {
     width: 1rem;
     height: 1rem;
     position: absolute;
-    top: 8.4rem;
+    top: 8.6rem;
     left: 5.4rem;
 }
 
@@ -389,7 +404,7 @@ body {
     width: 1rem;
     height: 1rem;
     position: absolute;
-    top: 8.4rem;
+    top: 8.6rem;
     left: 7rem;
 }
 
@@ -397,7 +412,7 @@ body {
     width: 1rem;
     height: 1rem;
     position: absolute;
-    top: 8.4rem;
+    top: 8.6rem;
     left: 8.4rem;
 }
 
@@ -552,16 +567,16 @@ body {
 /* friendScreen */
 
 .scrollbar {
-    height: 7rem;
+    height: 7.2rem;
     width: 0.8rem;
     position: absolute;
     top: 2.2rem;
-    left: 8.6rem;
+    left: 8.8rem;
     user-select: none;
 }
 
 .scrollTrack {
-    height: 6.8rem;
+    height: 7.2rem;
     width: 0.8rem;
     position: absolute;
     top: 0.2rem;
@@ -570,6 +585,7 @@ body {
 
 
 .scrollThumb {
+    top: -0.12rem;
     height: 1rem;
     width: 0.8rem;
     position: relative;
@@ -580,8 +596,8 @@ body {
 
 
 .friendListContainer {
-    height: 7rem;
-    width: 7.8rem;
+    height: 7.2rem;
+    width: 8rem;
     position: relative;
     top: 2.2rem;
     left: 0.6rem;
@@ -592,7 +608,7 @@ body {
 
 .friendSearchBar {
     height: 1.4rem;
-    width: 7.6rem;
+    width: 7.8rem;
     position: relative;
     margin-bottom: 0.2rem;
 }
@@ -647,7 +663,7 @@ body {
 
 .searchbarImgContainer {
     height: 1.4rem;
-    width: 6rem;
+    width: 6.2rem;
     position: absolute;
     left: 1.4rem;
     overflow: hidden;
@@ -656,7 +672,7 @@ body {
 
 .searchbarImg {
     height: 1.4rem;
-    width: 6.2rem;
+    width: 6.4rem;
     position: absolute;
     
     transition: left 0.25s steps(3);
@@ -666,7 +682,7 @@ body {
     height: 1.4rem;
     width: 1.8rem;
     position: absolute;
-    margin-left: 5.8rem;
+    margin-left: 6rem;
     z-index: 999;
 }
 
@@ -681,7 +697,7 @@ body {
 
 .friendCard {
     height: 1.4rem;
-    width: 7.6rem;
+    width: 7.8rem;
     position: relative;
     margin-bottom: 0.2rem;
 }
@@ -703,7 +719,7 @@ body {
 
 .friendName {
     height: 1.4rem;
-    width: 5.2rem;
+    width: 5.4rem;
     position: absolute;
     left: 1rem;
     overflow: hidden;
@@ -718,7 +734,7 @@ body {
     height: 1.4rem;
     width: 1.4rem;
     position: absolute;
-    left: 6.2rem;
+    left: 6.4rem;
 }
 
 .friendAva {
@@ -733,7 +749,7 @@ body {
     height: 1.2rem;
     width: 8rem;
     position: absolute;
-    top: 1.6rem;
+    top: 1.8rem;
     left: 0.6rem;
 }
 
@@ -744,22 +760,136 @@ body {
     top: 0.2rem;
 }
 
-.topBarIcon.group {
-    left: 0.2rem;
-}
+
 
 .topBarIcon.follow {
-    left: 1.8rem;
+    left: 1.6rem;
 }
 
 .topBarIcon.notificationsOn {
-    left: 4.8rem;
+    left: 5rem;
 }
 
 .topBarIcon.notificationsOff {
-    left: 4.8rem;
+    left: 5rem;
 }
 
 .topBarIcon.other {
-    left: 6.4rem;
+    left: 6.6rem;
+}
+
+.liveChat {
+    height: 0.8rem;
+    width: 1.6rem;
+    position: absolute;
+    top: 0.2rem;
+    left: 3.2rem;
+}
+
+.pmChat {
+    height: 4.6rem;
+    width: 7.8rem;
+    position: absolute;
+    top: 3rem;
+    left: 0.8rem;
+    overflow: hidden;
+}
+
+.pmChatUser {
+    position: relative;
+}
+
+.pmChatContainer {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 0.2rem;
+}
+
+
+
+.pmText {
+    padding-top: 0.2rem;
+    position: relative;
+    display: inline-block;
+    font-family: nokiafc22;
+    font-size: .6rem;
+    color: var(--green3);
+    text-align: left;
+    background-image: url('../images/pmBubbleMC.svg');
+}
+
+.pmBubbleContainer {
+    
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    
+}
+
+.pmBubbleLeft {
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    height: auto;
+    width: auto;
+}
+
+.pmBubbleTL {
+    height: 0.4rem;
+    width: 0.4rem;
+}
+
+.pmBubbleML {
+    height: 0.4rem;
+    width: 0.4rem;
+}
+.pmBubbleBL {
+    height: 0.6rem;
+    width: 0.4rem;
+}
+
+.pmBubbleCenter {
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    height: auto;
+    width: auto;
+}
+
+.pmBubbleMC {
+    height: 1rem;
+    width: 3.2rem;
+}
+
+.pmBubbleBC {
+    height: 0.4rem;
+    width: 3.2rem;
+}
+
+.pmBubbleRight {
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    height: auto;
+    width: auto;
+}
+
+.pmBubbleTR {
+    height: 0.4rem;
+    width: 0.4rem;
+}
+
+.pmBubbleMR {
+    height: 0.4rem;
+    width: 0.4rem;
+}
+
+.pmBubbleBR {
+    height: 0.6rem;
+    width: 0.6rem;
 }

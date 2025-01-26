@@ -1,106 +1,26 @@
 const friendList = document.getElementById("friendList");
-const scrollThumb = document.getElementById("scrollThumb");
-const scrollTrack = document.getElementById("scrollTrack")
+const scrollThumbFriendList = document.getElementById("scrollThumbFriendList");
+const scrollTrackFriendList = document.getElementById("scrollTrackFriendList");
+const scrollThumbPmMessages = document.getElementById("scrollThumbPmMessages");
+const scrollTrackPmMessages = document.getElementById("scrollTrackPmMessages");
 const searchbarInput = document.getElementById("searchbarInput");
 const searchbarContainer = document.getElementById("searchbarContainer");
 const searchbarOutput = document.getElementById("searchbarOutput")
 const searchbarImg = document.getElementById("searchbarImg")
 const searchbarImgContainer = document.getElementById("searchbarImgContainer")
 const friendCardsContainer = document.getElementById("friendCardsContainer")
+const pmChatContainer = document.getElementById("pmChatContainer")
+const pmMessage = document.querySelectorAll(".pmMessage")
 
-
-let scrollPosition = 0
-const minScroll = 0; // Minimum scroll value (top limit)
-const maxScroll = 90; // Maximum scroll value (bottom limit)
-const stepSize = 1;
-
-
-const resetScroll = () => {
-    scrollPosition = 0;
-    friendList.style.transform = `translateY(${0 - (scrollPosition)}%)`;
-    scrollThumb.style.transform = `translateY(${0 + (0.066 * scrollPosition)}rem)`;
-}
-
-window.addEventListener("wheel", (event) => {
-
-    scrollPosition += event.deltaY;
-    scrollPosition = Math.max(minScroll, Math.min(scrollPosition, maxScroll));
-
-
-    friendList.style.transform = `translateY(${0 - (scrollPosition)}%)`;
-    scrollThumb.style.transform = `translateY(${0 + (0.066 * scrollPosition)}rem)`;
-});
-
-
-let isDragging = false;
-
-
-const moveThumb = (event) => {
-
-    const track = scrollTrack.getBoundingClientRect();
-  
-    let y = event.clientY - track.top - scrollThumb.offsetHeight / 2;
-    console.log(event.clientY);
-
-    y = Math.max(0, Math.min(y, track.height - scrollThumb.offsetHeight));
-
-    scrollThumb.style.transform = `translateY(${y * 0.066}rem)`;
-    friendList.style.transform = `translateY(${0 - (0.1 * y)}rem)`;
-    
-}
-
-scrollThumb.addEventListener('mousedown', (e) => {
-
-    isDragging = true;
-    moveThumb(e);
-    
-});
-
-scrollTrack.addEventListener('mousedown', (e) => {
-
-    isDragging = true;
-    moveThumb(e);
-    
-});
-
-const scrollGrab = () => {
-    let isMouseDown = false;
-    let isMouseMove = false;
-
-    scrollTrack.addEventListener("mousedown",function (e) {
-      
-        isMouseDown = true;
-        console.log("mousedown");
-        moveThumb(e);
-      
-    });
-
-    scrollThumb.addEventListener("mousedown",function (e) {
-      
-        isMouseDown = true;
-        console.log("mousedown");
-        moveThumb(e);
-      
-    });
-  
-    document.addEventListener("mousemove" , function(e) {
-        if(isMouseDown) {
-        isMouseMove = true;
-        console.log("mousemove");
-      
-        moveThumb(e);
-      
-    }
-    });
-  
-    document.addEventListener("mouseup", function() {
-        isMouseDown = false;
-    });
-  
-}
-
-scrollGrab()
-
+let scrollThumb = ''
+let scrollTrack = ''
+let scrollContainer = ''
+let thumbPosition = 0
+let containerPosition = 0
+let minScroll = 0; // Minimum scroll value (top limit)
+let thumbMaxScroll = 0;
+let containerMaxScroll = 0; // Maximum scroll value (bottom limit)
+let stepSize = 1;
 
 
 searchbarContainer.addEventListener("click", function() {
@@ -119,7 +39,6 @@ document.addEventListener('click', function(event) {
       //searchBarInput.classList.add('none');
     }
   });
-
 
 searchbarOutput.addEventListener('input', function() {
     const userInput = searchbarOutput.innerText;
@@ -210,24 +129,27 @@ const friendListAssembly = () => {
 
 friendListAssembly()
 
-
 const friendCard = document.querySelectorAll('.friendCard')
-const privateMessageScreen = document.getElementById('privateMessageScreen')
-
 
 friendCard.forEach(friendCard => {
     friendCard.addEventListener('click', function() {
         
-        const friendPrivateMessage = document.getElementById((friendCard.querySelector('.friendName').innerText) + 'PrivateMessage');
+        const friendPm = document.getElementById('pmChat' + (friendCard.querySelector('.friendName').innerText));
 
         friendScreen.classList.add('none');
         friendScreen.classList.remove('block');
         
-        friendPrivateMessage.classList.remove('none');
-        friendPrivateMessage.classList.add('block');
-        privateMessageScreen.classList.remove('none');
-        privateMessageScreen.classList.add('block');
+        friendPm.classList.remove('none');
+        friendPm.classList.add('block');
+        pmScreen.classList.remove('none');
+        pmScreen.classList.add('block');
     
+        isKitiScreen = false;
+        isFriendScreen = false;
+        isPmScreen = true;
+
+        stretchPmBubble();
+        scrollUpdate();
         
     
         //pelo sim pelo não
@@ -237,9 +159,137 @@ friendCard.forEach(friendCard => {
         backOff.classList.remove('block');
 
         backOn.addEventListener('click', function() {
-            friendPrivateMessage.classList.remove('block');
-            friendPrivateMessage.classList.add('none')
+            friendPm.classList.remove('block');
+            friendPm.classList.add('none')
         })
     })
 })
 
+const pmBubbleCenter = document.querySelectorAll('.pmBubbleCenter')
+const pmBubbleML = document.querySelectorAll('.pmBubbleML')
+const pmBubbleBC = document.querySelectorAll('.pmBubbleBC')
+const pmBubbleMR = document.querySelectorAll('.pmBubbleMR')
+const pmText = document.querySelectorAll('.pmText')
+
+const stretchPmBubble = () => {
+    pmBubbleCenter.forEach((pmBubbleCenter, index) => {
+        const pmBubbleCenterWidth = pmBubbleCenter.clientWidth;
+        const newWidth = (pmBubbleCenterWidth/16) ; 
+        const pmBubbleCenterHeight = pmBubbleCenter.clientHeight;
+        const newHeight = (pmBubbleCenterHeight/16) - 1; 
+        
+        pmBubbleBC[index].style.width = `${newWidth}rem`;
+        pmBubbleML[index].style.height =`${newHeight}rem`;
+        pmBubbleMR[index].style.height =`${newHeight}rem`;
+    });
+}
+
+
+
+
+const scrollUpdate = () => {
+    if (isFriendScreen === true) {
+        scrollThumb = scrollThumbFriendList;
+        scrollTrack = scrollTrackFriendList;
+        scrollContainer = friendList;
+        thumbMaxScroll = 100;
+        containerMaxScroll =   (((friendCard.length)-4) * 19) + (1.5 * 19);
+
+    } else if (isPmScreen === true) {
+        scrollThumb = scrollThumbPmMessages;
+        scrollTrack = scrollTrackPmMessages;
+        scrollContainer = pmChatContainer;
+        containerMaxScroll = 1000
+        thumbMaxScroll = 100;
+
+    };
+
+
+    
+    window.addEventListener("wheel", (event) => {
+    
+        thumbPosition += event.deltaY;
+        thumbPosition = Math.max(minScroll, Math.min(thumbPosition, thumbMaxScroll));
+        containerPosition += event.deltaY;
+        containerPosition = Math.max(minScroll, Math.min(containerPosition, containerMaxScroll));
+    
+        scrollContainer.style.transform = `translateY(${0 - (0.08 * (containerPosition))}rem)`; //velocidade do scroll
+        scrollThumb.style.transform = `translateY(${0 + (0.066*((friendCard.length/7.2)) * thumbPosition)}rem)`;
+        
+    });
+    
+    let isDragging = false;
+    
+    const moveThumb = (event) => {
+    
+        const track = scrollTrack.getBoundingClientRect();
+      
+        let y = event.clientY - track.top - scrollThumb.offsetHeight / 2;
+        console.log(event.clientY);
+    
+        y = Math.max(0, Math.min(y, track.height - scrollThumb.offsetHeight));
+    
+        scrollThumb.style.transform = `translateY(${y * 0.066}rem)`;
+        scrollContainer.style.transform = `translateY(${0 - (0.1 * y)}rem)`;
+        
+    }
+    
+    scrollThumb.addEventListener('mousedown', (e) => {
+    
+        isDragging = true;
+        moveThumb(e);
+        
+    });
+    
+    scrollTrack.addEventListener('mousedown', (e) => {
+    
+        isDragging = true;
+        moveThumb(e);
+        
+    });
+    
+    const scrollGrab = () => {
+        let isMouseDown = false;
+        let isMouseMove = false;
+    
+        scrollTrack.addEventListener("mousedown",function (e) {
+          
+            isMouseDown = true;
+            console.log("mousedown");
+            moveThumb(e);
+          
+        });
+    
+        scrollThumb.addEventListener("mousedown",function (e) {
+          
+            isMouseDown = true;
+            console.log("mousedown");
+            moveThumb(e);
+          
+        });
+      
+        document.addEventListener("mousemove" , function(e) {
+            if(isMouseDown) {
+            isMouseMove = true;
+            console.log("mousemove");
+          
+            moveThumb(e);
+          
+        }
+        });
+      
+        document.addEventListener("mouseup", function() {
+            isMouseDown = false;
+        });
+      
+    }
+    
+    scrollGrab()
+}
+
+const resetScroll = () => {
+
+    scrollPosition = 0;
+    scrollContainer.style.transform = `translateY(${0 - (scrollPosition)}%)`;
+    scrollThumb.style.transform = `translateY(${0 + (0.066 * scrollPosition)}rem)`;
+}

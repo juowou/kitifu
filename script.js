@@ -1,6 +1,8 @@
 const homescreen = document.getElementById("homeScreen");
 const kitiscreen = document.getElementById("kitiScreen");
 const friendScreen = document.getElementById("friendScreen")
+const pmScreen = document.getElementById('pmScreen')
+
 const backOn = document.getElementById("backOn")
 const backOff = document.getElementById("backOff")
 const kiti = document.getElementById("kiti");
@@ -30,6 +32,10 @@ setTime();
 
 //switch screens
 
+let isKitiScreen = false
+let isFriendScreen = false
+let isPmScreen = false
+
 kiti.addEventListener('click', function() {
   homescreen.classList.add('none');
   homescreen.classList.remove('block');
@@ -42,6 +48,10 @@ kiti.addEventListener('click', function() {
   backOff.classList.add('none');
   backOff.classList.remove('block');
 
+  isKitiScreen = true;
+  isFriendScreen = false;
+  isPmScreen = false
+
 })
 
 backOn.addEventListener('click', function() {
@@ -52,8 +62,8 @@ backOn.addEventListener('click', function() {
   kitiscreen.classList.remove('block');
   friendScreen.classList.remove('block');
   friendScreen.classList.add('none');
-  privateMessageScreen.classList.remove('block');
-  privateMessageScreen.classList.add('none');
+  pmScreen.classList.remove('block');
+  pmScreen.classList.add('none');
   
 
   backOn.classList.remove('block');
@@ -76,6 +86,11 @@ friends.addEventListener('click', function() {
   backOff.classList.add('none');
   backOff.classList.remove('block');
 
+  isKitiScreen = false;
+  isFriendScreen = true;
+  isPmScreen = false;
+
+scrollUpdate()
   
 })
 
