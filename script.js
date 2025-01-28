@@ -48,9 +48,11 @@ kiti.addEventListener('click', function() {
   backOff.classList.add('none');
   backOff.classList.remove('block');
 
+  resetScroll();
+
   isKitiScreen = true;
   isFriendScreen = false;
-  isPmScreen = false
+  isPmScreen = false;
 
 })
 
@@ -70,6 +72,7 @@ backOn.addEventListener('click', function() {
   backOn.classList.add('none');
   backOff.classList.remove('none');
   backOff.classList.add('block');
+
   resetScroll()
 })
 
@@ -89,6 +92,8 @@ friends.addEventListener('click', function() {
   isKitiScreen = false;
   isFriendScreen = true;
   isPmScreen = false;
+
+  resetScroll();
 
 scrollUpdate()
   

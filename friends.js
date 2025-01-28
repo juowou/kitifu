@@ -11,16 +11,10 @@ const searchbarImgContainer = document.getElementById("searchbarImgContainer")
 const friendCardsContainer = document.getElementById("friendCardsContainer")
 const pmChatContainer = document.getElementById("pmChatContainer")
 const pmMessage = document.querySelectorAll(".pmMessage")
+const friendListContainer = document.getElementById("friendListContainer")
+const pmChatUser = document.querySelector(".pmChatUser")
 
-let scrollThumb = ''
-let scrollTrack = ''
-let scrollContainer = ''
-let thumbPosition = 0
-let containerPosition = 0
-let minScroll = 0; // Minimum scroll value (top limit)
-let thumbMaxScroll = 0;
-let containerMaxScroll = 0; // Maximum scroll value (bottom limit)
-let stepSize = 1;
+
 
 
 searchbarContainer.addEventListener("click", function() {
@@ -97,7 +91,33 @@ let friendCards = {
         online: true,
         ava: "images/friendAvaJeca.svg"
     },
-    
+    mariaaaah : {
+        name: "mariaah",
+        online: false,
+        ava: "images/friendAvaMariah.svg"
+    },
+    casaaaiss : {
+        name: "casaiss",
+        online: false,
+        ava: "images/friendAvaCasais.svg"
+    },
+    ricardaaoooo : {
+        name: "ricardoooo",
+        online: false,
+        ava: "images/friendAvaRicardo.svg"
+    },
+    marianaaaPAULA : {
+        name: "marianaPAULA",
+        online: true,
+        ava: "images/friendAvaPaula.svg"
+    },
+    jecapeaapeca : {
+        name: "jecapepeca",
+        online: true,
+        ava: "images/friendAvaJeca.svg"
+    },
+
+   
 }
 
 const friendListAssembly = () => {
@@ -148,6 +168,7 @@ friendCard.forEach(friendCard => {
         isFriendScreen = false;
         isPmScreen = true;
 
+        resetScroll();
         stretchPmBubble();
         scrollUpdate();
         
@@ -160,7 +181,11 @@ friendCard.forEach(friendCard => {
 
         backOn.addEventListener('click', function() {
             friendPm.classList.remove('block');
-            friendPm.classList.add('none')
+            friendPm.classList.add('none');
+            isKitiScreen = true;
+            isFriendScreen = false;
+            isPmScreen = false;
+            resetScroll();
         })
     })
 })
@@ -169,54 +194,65 @@ const pmBubbleCenter = document.querySelectorAll('.pmBubbleCenter')
 const pmBubbleML = document.querySelectorAll('.pmBubbleML')
 const pmBubbleBC = document.querySelectorAll('.pmBubbleBC')
 const pmBubbleMR = document.querySelectorAll('.pmBubbleMR')
+const pmUserAva = document.querySelectorAll('.pmUserAva')
 const pmText = document.querySelectorAll('.pmText')
 
 const stretchPmBubble = () => {
     pmBubbleCenter.forEach((pmBubbleCenter, index) => {
         const pmBubbleCenterWidth = pmBubbleCenter.clientWidth;
-        const newWidth = (pmBubbleCenterWidth/16) ; 
+        let newWidth = (pmBubbleCenterWidth/16) ; 
         const pmBubbleCenterHeight = pmBubbleCenter.clientHeight;
-        const newHeight = (pmBubbleCenterHeight/16) - 1; 
-        
+        let newHeight = (pmBubbleCenterHeight/16) -1; 
+        console.log(newHeight);
+        if (newHeight < 1) {
+            newHeight = 0.2
+        };
+
         pmBubbleBC[index].style.width = `${newWidth}rem`;
-        pmBubbleML[index].style.height =`${newHeight}rem`;
+        pmBubbleML[index].style.height =`${newHeight + 0.2}rem`;
         pmBubbleMR[index].style.height =`${newHeight}rem`;
+        pmUserAva[index].style.paddingTop = `${newHeight}rem`
+
     });
 }
 
-
-
+let containerTop = 50; // Initial position in percentage
+let scrollSpeed = 1.5; 
+let scrollThumb = ''
+let scrollTrack = ''
+let scrollContainer = ''
+let thumbPosition = 0
+let containerPosition = 0
+let minScroll = 0; // Minimum scroll value (top limit)
+let thumbMaxScroll = 22;
+let scrollThumbSpeed = 0
+let containerMaxScroll = 0; // Maximum scroll value (bottom limit)
+let stepSize = 0;
 
 const scrollUpdate = () => {
     if (isFriendScreen === true) {
         scrollThumb = scrollThumbFriendList;
         scrollTrack = scrollTrackFriendList;
         scrollContainer = friendList;
-        thumbMaxScroll = 100;
-        containerMaxScroll =   (((friendCard.length)-4) * 19) + (1.5 * 19);
+        thumbMaxScroll = 0;
+        scrollSpeed = 5;
+    
+        containerMaxScroll = (((friendList.offsetHeight)-(friendListContainer.offsetHeight)) * 100 ) / (friendListContainer.offsetHeight);
+        stepSize = (friendList.offsetHeight) * 0.1; 
 
     } else if (isPmScreen === true) {
+
         scrollThumb = scrollThumbPmMessages;
         scrollTrack = scrollTrackPmMessages;
         scrollContainer = pmChatContainer;
-        containerMaxScroll = 1000
-        thumbMaxScroll = 100;
-
+        containerMaxScroll = (((pmChatContainer.offsetHeight)-(pmChatUser.offsetHeight)) * 100 ) / (pmChatUser.offsetHeight);
+        scrollSpeed = 20;
     };
 
 
     
-    window.addEventListener("wheel", (event) => {
-    
-        thumbPosition += event.deltaY;
-        thumbPosition = Math.max(minScroll, Math.min(thumbPosition, thumbMaxScroll));
-        containerPosition += event.deltaY;
-        containerPosition = Math.max(minScroll, Math.min(containerPosition, containerMaxScroll));
-    
-        scrollContainer.style.transform = `translateY(${0 - (0.08 * (containerPosition))}rem)`; //velocidade do scroll
-        scrollThumb.style.transform = `translateY(${0 + (0.066*((friendCard.length/7.2)) * thumbPosition)}rem)`;
-        
-    });
+   
+
     
     let isDragging = false;
     
@@ -287,9 +323,22 @@ const scrollUpdate = () => {
     scrollGrab()
 }
 
-const resetScroll = () => {
+document.addEventListener('wheel', function(event) {
+    console.log('Wheel event triggered')
+    if (event.deltaY > 0) {
+      containerTop += scrollSpeed;
+    } else {
+      containerTop -= scrollSpeed;
+    };
 
-    scrollPosition = 0;
-    scrollContainer.style.transform = `translateY(${0 - (scrollPosition)}%)`;
-    scrollThumb.style.transform = `translateY(${0 + (0.066 * scrollPosition)}rem)`;
+    containerTop = Math.max(0, Math.min(containerTop, containerMaxScroll)); 
+  
+    scrollContainer.style.top = `${- containerTop}%`;
+    console.log(scrollContainer);
+    console.log(containerTop + ' containerTop')
+  });
+
+const resetScroll = () => {
+    scrollSpeed = 1.5;
+    containerTop = 50;
 }
