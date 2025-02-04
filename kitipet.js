@@ -86,12 +86,6 @@ const updateDateNumeric = (e) => e.getFullYear() * 1000000 + (e.getMonth() + 1) 
     timer: [],
   } 
   
-  //set e get
-  // há um bug aqui que é: se a hora de um timer coincidir com a hora do outro, 
-  // o getTimer vai remover os dois timers, mas só vai fazer -1, em vez de -2, 
-  // o que vai crashar toda esta logica no localStorage e depois vai ser preciso limpa-lo :) 
-  // mas tou me a cagar, isso nunca vai acontecer ahahahah ( ⊙ _ ⊙)
-  
   const setHungryTimer = () => {
     
     const currentDate = new Date();  

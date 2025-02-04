@@ -6,11 +6,7 @@
     --green4: #0e4d00;
 }
 
-* {
-    padding: 0;
-    margin: 0;
- 
-    
+* { 
     user-select: none;
   }
 
@@ -66,6 +62,7 @@ body {
     position: absolute;
     top: 8.8rem;
     left: 6.8rem;
+    overflow: hidden;
 }
 
 .background {
@@ -441,8 +438,8 @@ body {
     width: 1.4rem;
     height: 1.4rem;
     position: absolute;
-    top: 3.2rem;
-    left: 8rem;
+    top: 1.6rem;
+    left: 4.4rem;
     
 }
 
@@ -764,10 +761,6 @@ body {
     overflow: hidden;
 }
 
-.pmChatUser {
-    position: relative;
-}
-
 .pmTopBarWrapper{
     height: 1.2rem;
     width: 8.4rem;
@@ -781,7 +774,7 @@ body {
     height: 1.2rem;
     width: 8.4rem;
     position: absolute;
-    top: -1.2rem;
+    top: -1rem;
     left: 0;
     z-index: 999;
     transition: top 0.3s steps(6);
@@ -826,6 +819,7 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
+    padding-top: 0.2rem;
     top: 0%;
     gap: 0.2rem;
 }
@@ -931,4 +925,123 @@ body {
     padding-top: 0;
     height: 1.4rem;
     width: 1.4rem;
+}
+
+
+
+.smBubbleContainer {
+    top: 7.6rem;
+    left: 0.8rem;
+    position: absolute;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    z-index: 999;
+}
+
+.smBubbleBg {
+    height: 2.2rem;
+    width: 8rem;
+    position: absolute;
+    background-color: var(--green0);
+    z-index: -999;
+
+}
+
+.smUserAva {
+    position: relative;
+    top: 0.4rem;
+    
+    height: 1.4rem;
+    width: 1.4rem;
+}
+
+.smBubbleLeft {
+    padding-top: 0.2rem;
+    padding-left: 0.2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    height: auto;
+    width: auto;
+    
+}
+
+.smBubbleTL {
+    height: 0.4rem;
+    width: 0.8rem;
+}
+
+.smBubbleML {
+    height: 0.4rem;
+    width: 0.8rem;
+}
+.smBubbleBL {
+    height: 1rem;
+    width: 0.8rem;
+}
+
+.smBubbleCenter {
+    padding-top: 0.2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    height: auto;
+    width: auto;
+}
+
+.smBubbleTC {
+    height: 0.2rem;
+    width: 5rem;
+}
+
+.smText {
+    height: 100%;
+    width: 100%;
+    max-width: 5rem;
+    min-height: 1.2rem;
+    border-top-style: solid;
+    border-color: var(--green1);
+    position: relative;
+    display:flow-root;
+    font-family: nokiafc22;
+    font-size: .6rem;
+    color: var(--green4);
+    text-align: left;
+    background-image: url('../images/smBubbleMC.svg');
+    white-space: pre-wrap; 
+    word-break:break-all; /* Break the text at any character */
+    overflow-wrap: break-word;
+    outline: none;
+}
+
+
+
+.smBubbleBC {
+    height: 0.4rem;
+    width: 5rem;
+}
+
+.smBubbleRight {
+    padding-top: 0.2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    height: auto;
+    width: auto;
+}
+
+.smBubbleTR {
+    height: 0.4rem;
+    width: 0.4rem;
+}
+
+.smBubbleMR {
+    height: 0.4rem;
+    width: 0.4rem;
+}
+
+.smBubbleBR {
+    height: 1rem;
+    width: 0.4rem;
 }
