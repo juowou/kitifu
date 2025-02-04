@@ -75,50 +75,7 @@ friendListAssembly()
 const friendCard = document.querySelectorAll('.friendCard')
 
 
-friendCard.forEach(friendCard => {
-    friendCard.addEventListener('click', function() {
-        console.log('click');
-        
-        
-       
-      
-       
-        const friendPm = document.getElementById('pmChat' + (friendCard.querySelector('.friendName').innerText));
 
-        friendScreen.classList.add('none');
-        friendScreen.classList.remove('block');
-        pmScreen.classList.remove('none');
-        pmScreen.classList.add('block');
-        
-        
-        friendPm.classList.remove('none');
-        friendPm.classList.add('block');
-        
-    
-        isKitiScreen = false;
-        isFriendScreen = false;
-        isPmScreen = true;
-
-        scrollUpdate();
-        stretchPmBubble();
-        resetScroll();
-    
-        //pelo sim pelo não
-        backOn.classList.add('block');
-        backOn.classList.remove('none');
-        backOff.classList.add('none');
-        backOff.classList.remove('block');
-
-        backOn.addEventListener('click', function() {
-            friendPm.classList.remove('block');
-            friendPm.classList.add('none');
-            isKitiScreen = true;
-            isFriendScreen = false;
-            isPmScreen = false;
-            resetScroll();
-        })
-    })
-})
 
 
 let containerTop = 50; // Initial position in percentage
@@ -248,3 +205,186 @@ const resetScroll = () => {
         containerTop = 50;
     }
 }
+
+
+let query = ''
+let obj = ''
+let results = ''
+let searchBarInputValue = searchbarInput.value
+
+const searchObjectKeys = (query, obj) => {
+    const results = [];
+    const lowerCaseQuery = query.toLowerCase();
+
+    if (!query.trim()) {
+        for (const key in obj) {
+            results.push({
+                key: key,
+                name: obj[key].name,
+                online: obj[key].online,
+                ava: obj[key].ava
+            });
+        }
+        return results; // Return all friends immediately
+    }
+  
+    for (const key in obj) {
+      if (key.toLowerCase().includes(lowerCaseQuery)) {
+        results.push({
+            key: key,
+            name: obj[key].name,
+            online: obj[key].online,
+            ava: obj[key].ava
+        });
+      }
+    }
+    
+    console.log(results.value + ' value')
+    return results;
+  }
+  
+
+  const updateSearchObjectKeys = () => {
+    if (isFriendScreen) {
+        query = searchBarInputValue;
+        obj = friendCards;
+        results = searchObjectKeys(query, obj);
+        console.log(results)
+    }
+  }
+
+ 
+  const displayFriendList = (results) => {
+    friendCardsContainer.innerHTML = ""; // Clear previous results
+
+    for (const key in results) {
+        let display = 'none';
+        let isOnline = results[key].online;
+        console.log('key.online ' + results[key].online);
+        if (isOnline === true) {
+            display = 'block'
+        } else {
+            display = 'none'
+        };
+
+        friendCardsContainer.innerHTML += `<div id="friendCard" class="friendCard">
+                    <div id="friendStatus" class="friendStatus">
+                        <img class="online status ${display}" src="images/online.svg" alt="online">
+                        <img class="offline status block" src="images/offline.svg" alt="offline">
+                    </div>
+                    <div id="friendName" class="friendName">${results[key].name}</div>
+                    <div id="friendAvaContainer" class="friendAvaContainer">
+                        <img id="friendAva${results[key]}" class="friendAva" src=${results[key].ava} alt="friendAva">
+                    </div>
+                </div>`
+        
+    }
+
+    const friendCard = document.querySelectorAll('.friendCard');
+
+    friendCard.forEach(friendCard => {
+        friendCard.addEventListener('click', function() {
+            console.log('click');
+            
+            
+           
+          
+           
+            const friendPm = document.getElementById('pmChat' + (friendCard.querySelector('.friendName').innerText));
+    
+            friendScreen.classList.add('none');
+            friendScreen.classList.remove('block');
+            pmScreen.classList.remove('none');
+            pmScreen.classList.add('block');
+            
+            
+            friendPm.classList.remove('none');
+            friendPm.classList.add('block');
+            
+        
+            isKitiScreen = false;
+            isFriendScreen = false;
+            isPmScreen = true;
+    
+            scrollUpdate();
+            stretchPmBubble();
+            resetScroll();
+        
+            //pelo sim pelo não
+            backOn.classList.add('block');
+            backOn.classList.remove('none');
+            backOff.classList.add('none');
+            backOff.classList.remove('block');
+    
+            backOn.addEventListener('click', function() {
+                friendPm.classList.remove('block');
+                friendPm.classList.add('none');
+                isKitiScreen = true;
+                isFriendScreen = false;
+                isPmScreen = false;
+                resetScroll();
+            })
+        })
+    })
+   
+  };
+
+searchbarOutput.addEventListener('input', function() {
+    
+    searchBarInputValue = searchbarOutput.innerText;
+    console.log(searchbarInput.value);
+
+    if (searchbarOutput.innerHTML.includes('<br>')) {
+        searchbarOutput.innerHTML = searchbarOutput.innerHTML.replace(/<br>/g, ''); // Clear the content completely
+    };
+
+    updateSearchObjectKeys();
+    searchObjectKeys(query,obj);
+    displayFriendList(results);
+    
+})
+
+friendCard.forEach(friendCard => {
+    friendCard.addEventListener('click', function() {
+        console.log('click');
+        
+        
+       
+      
+       
+        const friendPm = document.getElementById('pmChat' + (friendCard.querySelector('.friendName').innerText));
+
+        friendScreen.classList.add('none');
+        friendScreen.classList.remove('block');
+        pmScreen.classList.remove('none');
+        pmScreen.classList.add('block');
+        
+        
+        friendPm.classList.remove('none');
+        friendPm.classList.add('block');
+        
+    
+        isKitiScreen = false;
+        isFriendScreen = false;
+        isPmScreen = true;
+
+        scrollUpdate();
+        stretchPmBubble();
+        resetScroll();
+    
+        //pelo sim pelo não
+        backOn.classList.add('block');
+        backOn.classList.remove('none');
+        backOff.classList.add('none');
+        backOff.classList.remove('block');
+
+        backOn.addEventListener('click', function() {
+            friendPm.classList.remove('block');
+            friendPm.classList.add('none');
+            isKitiScreen = true;
+            isFriendScreen = false;
+            isPmScreen = false;
+            resetScroll();
+        })
+    })
+})
