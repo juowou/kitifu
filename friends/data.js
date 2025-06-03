@@ -1,4 +1,4 @@
-let friendCards = {
+export let friendCards = {
     juowou: {
         name: "juowou",
         online: true,
@@ -49,63 +49,32 @@ let friendCards = {
         online: true,
         ava: "images/friendAvaJeca.svg"
     },
-    mariaaaah : {
-        name: "mariaah",
+    livian : {
+        name: "livian",
         online: false,
         ava: "images/friendAvaMariah.svg"
     },
-    casaaaiss : {
-        name: "casaiss",
-        online: false,
-        ava: "images/friendAvaCasais.svg"
-    },
-    ricardaaoooo : {
-        name: "ricardoooo",
-        online: false,
-        ava: "images/friendAvaRicardo.svg"
-    },
-    marianaaaPAULA : {
-        name: "marianaPAULA",
-        online: true,
-        ava: "images/friendAvaPaula.svg"
-    },
-    jecapeaapeca : {
-        name: "jecapepeca",
+       daniela : {
+        name: "daniela",
         online: true,
         ava: "images/friendAvaJeca.svg"
     },
+    anaSophia : {
+        name: "anansophia",
+        online: false,
+        ava: "images/friendAvaCasais.svg"
+    },
+    bernardo : {
+        name: "bernardo",
+        online: false,
+        ava: "images/friendAvaRicardo.svg"
+    },
+    cristal : {
+        name: "cristal",
+        online: true,
+        ava: "images/friendAvaPaula.svg"
+    },
+ 
 
    
 }
-
-let pmMessages = {
-    juowou: [
-        {
-            messageCode: 'pmjuowou1737722302659',
-            user: "juowou",
-            ava: "images/friendAva.svg",
-            text: "oi",
-        },
-         {
-            messageCode: 'pmjuowou1737722304056',
-            user: "juowou",
-            ava: "images/friendAva.svg",
-            text: "oi",
-        },
-        {
-            messageCode: 'pmjuowou1737722304056',
-            user: "juowou",
-            ava: "images/friendAva.svg",
-            text: "tbbbb bbb bb?"
-        },
-        {
-            messageCode: 'pmjuowou1737722304056',
-            user: "juowou",
-            ava: "images/friendAva.svg",
-            text: "?????????????????????????????????????????????????????????????????? hm?"
-        },
-    ]
-}
-
-
-

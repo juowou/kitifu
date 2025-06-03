@@ -38,15 +38,11 @@ body {
 .kitifu {
     width: 24rem;
     height: 24rem;
-    position:absolute
-}
-
-.center {
-    position: absolute;
+    position:absolute;
     transform: translate(-50%, -50%);
     left: 50%;
     top: 50%;
-  }
+}
 
 
 .case {
@@ -65,6 +61,15 @@ body {
     overflow: hidden;
 }
 
+.display {
+    width: 10.2rem;
+    height: 10.2rem;
+    position: absolute;
+    top: 8.8rem;
+    left: 6.8rem;
+    overflow: hidden;
+}
+
 .background {
     width: 10.2rem;
     height: 10.2rem;
@@ -73,41 +78,37 @@ body {
 }
 
 .topBar {
-    width: 4rem;
-    height: 1.4rem;
+    width: 9.4rem;
+    height: 1.6rem;
     position: absolute;
     top: 0.4rem;
-}
-
-.topBar.left {
     left: 0.4rem;
 }
 
-.topBar.right {
-    left: 5.8rem;
+.navigation {
+    width: 2.4rem;
+    height: 1rem;
+    position: absolute;
+    top: 0.6rem;
+    left: 0.8rem;
+    z-index: 999;
 }
 
 .back {
     width: 1rem;
     height: 1rem;
     position: absolute;
-    top: 0.6rem;
-    left: 0.6rem;
     z-index: 999;
 }
 
-.backOn {
+
+
+.forward {
     width: 1rem;
     height: 1rem;
     position: absolute;
     z-index: 999;
-}
-
-.backOff {
-    width: 1rem;
-    height: 1rem;
-    position: absolute;
-    z-index: 999;
+    left: 1.4rem;
 }
 
 .network {
@@ -118,12 +119,12 @@ body {
     left: 2rem;
 }
 
-.userStatus {
+.statusContainer {
     width: 0.6rem;
     height: 0.6rem;
     position: absolute;
     top: 0.8rem;
-    left: 3.4rem;
+    left: 3.8rem;
 }
 
 .status {
@@ -136,8 +137,8 @@ body {
     /* 0.2rem - 0.07rem = 0.13rem*/
 
     width: 6rem;
-    top: 0.53rem;
-    left: 6.13rem;
+    top: 0.55rem;
+    left: 5.97rem;
     background: linear-gradient(to top,  var(--green4) 0%, 
     var(--green4) 44.5%, 
     var(--green3)  44.5%, 
@@ -589,6 +590,13 @@ body {
     transform: translateY(0%)
 }
 
+.scrollThumb:hover {
+    cursor: grab;
+}
+
+.scrollThumb:active {
+    cursor: grabbing;
+}
 
 
 
@@ -683,7 +691,7 @@ body {
     z-index: 999;
 }
 
-.friendList {
+.friendListContent {
     top: 0%;
     left: 0.2rem;
     width: 7.6rem;
@@ -693,6 +701,8 @@ body {
     transition: top 0.1s ease;
     
 }
+
+
 
 .friendCard {
     height: 1.4rem;
@@ -725,8 +735,15 @@ body {
     text-overflow: ellipsis;
     font-size: .9rem;
     font-family: 'nokiafc22', sans-serif;
-    color: var(--green3);
 
+}
+
+.friendName.online {
+        color: var(--green3);
+}
+
+.friendName.offline {
+        color: var(--green2);
 }
 
 .friendAvaContainer {

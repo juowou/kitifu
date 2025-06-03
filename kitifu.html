@@ -18,24 +18,30 @@
         user-select: none;
       }</style>
     
-    <div class="kitifu center">
+    <div class="kitifu">
+
         <img class="case" src="images/case1.svg" alt="case">
-        <div class="screen">
-            <img class="background" src="images/background.svg" alt="background">
-            <img class="topBar left" src="images/topBarLeft.svg" alt="topBarLeft">
-            <img class="topBar right" src="images/topBarRight.svg" alt="topBarRight">
-            <div id="back" class="back">
-                <img id="backOn" class="backOn none" src="images/backOn.svg" alt="backOn">
-                <img id="backOff" class="backOff block" src="images/backOff.svg" alt="backOff">
+        <div class="display">
+            <img class="background" src="images/background.svg" alt="backgroundImage">
+            <img class="topBar" src="images/topBar.svg" alt="topBar">
+            <div id="navigation" class="navigation">
+                <img class="back" src="images/backOff.svg" alt="backOff">
+                <img id="back" class="back" src="images/backOn.svg" alt="backOn">
+                
+                <img class="forward" src="images/forwardOff.svg" alt="forwardOff">
+                <img id="forward" class="forward" src="images/forwardOn.svg" alt="forwardOn">
+                
             </div>
-            <img class="network" src="images/network.svg" alt="background">
-            <div class="userStatus" alt="userStatus">
-                <img class="online status block" src="images/online.svg" alt="online">
-                <img class="offline status none" src="images/offline.svg" alt="offline">
+            <div class="statusContainer" alt="status">
+                <img id="statusOnline" class="online status" src="images/online.svg" alt="online">
+                <img id="statusOffline" class="offline status" src="images/offline.svg" alt="offline">
             </div>
             <div id="clock"></div>
         </div>
-        <div id="homeScreen" class="screen block">
+
+
+
+        <div id="homeScreen" class="screen">
             <img id="kiti" class="kiti" src="images/kiti.svg" alt="kiti">
             <img id="friends" class="friends" src="images/friends.svg" alt="friends">                                
             <img class="mp3" src="images/mp3.svg" alt="mp3">                                
@@ -44,7 +50,8 @@
             <img class="settings" src="images/settings.svg" alt="settings">                     
             <img class="profile" src="images/profile.svg" alt="settings">
         </div>
-        <div id="kitiScreen" class="screen none">
+        
+        <div id="kitiScreen" class="screen">
             <div id="hungryStatus" class="hungry-status">
                 <img id="hungryStatus0" class="hungry-status-0" src="images/hungryStatus0.svg" alt="hungryStatus0">
                 <img id="hungryStatus1" class="hungry-status-1" src="images/hungryStatus1.svg" alt="hungryStatus1">
@@ -82,14 +89,15 @@
             <img id="playIcon" class="play" src="images/play.svg" alt="play">
             <img id="connectIcon" class="connect" src="images/connect.svg" alt="connect">
         </div>
-        <div id="friendScreen" class="screen none">
+
+        <div id="friendScreen" class="screen">
             <input type="text" id="searchbarInput" class="searchbarInput" placeholder="noone.."/>
             <div id="scrollbar" class="scrollbar">
-                <img id="scrollTrackFriendList" class="scrollTrack" src="images/scrollTrack.svg" draggable="false">
-                <img id="scrollThumbFriendList" class="scrollThumb" src="images/scrollThumb.svg" draggable="false">
+                <img id="scrollTrack" class="scrollTrack" src="images/scrollTrack.svg" draggable="false">
+                <img id="scrollThumb" class="scrollThumb" src="images/scrollThumb.svg" draggable="false">
             </div>
             <div id="friendListContainer" class="friendListContainer">
-                <div id="friendList" class="friendList">
+                <div id="friendListContent" class="friendListContent">
                 <div id="friendSearchBar" class="friendSearchBar">
                     
                     <img id="searchIcon" class="searchIcon" src="images/searchIcon.svg">
@@ -108,7 +116,8 @@
                 </div>     
             </div>
         </div>
-        <div id="pmScreen" class="screen none">
+
+        <div id="pmScreen" class="screen">
             <div id="scrollbar" class="scrollbar">
                 <img id="scrollTrackPmMessages" class="scrollTrack" src="images/scrollTrack.svg" draggable="false">
                 <img id="scrollThumbPmMessages" class="scrollThumb" src="images/scrollThumb.svg" draggable="false">
@@ -118,7 +127,6 @@
                 <div id="pmTop" class="pmTop"></div>
                 <div id="pmTopBarWrapper" class="pmTopBarWrapper">
                     <div id="pmTopBar" class="pmTopBar">
-                        <img id="topBarBackground" class="topBarBackground" src="images/topBarBackground.svg">
                         <img id="topBarIconGroup" class="topBarIcon group" src="images/topBarIconGroup.svg">
                         <img id="topBarIconFollow" class="topBarIcon follow" src="images/topBarIconFollow.svg">
         
@@ -154,10 +162,6 @@
             </div>
         </div>
 </div>
-    <script src="dataExample.js"></script>
-    <script src="script.js"></script>
-    <script src="messages.js"></script>
-    <script src="friends.js"></script>
-    <script src="kitipet.js"></script>
+    <script type="module" src="main.js"></script>
 </body>
 </html>
