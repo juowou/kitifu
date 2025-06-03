@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title></title>
+  <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <style>
+    * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+        
+        user-select: none;
+      }</style>
+    
+    <div class="kitifu center">
+        <img class="case" src="images/case1.svg" alt="case">
+        <div class="screen">
+            <img class="background" src="images/background.svg" alt="background">
+            <img class="topBar left" src="images/topBarLeft.svg" alt="topBarLeft">
+            <img class="topBar right" src="images/topBarRight.svg" alt="topBarRight">
+            <div id="back" class="back">
+                <img id="backOn" class="backOn none" src="images/backOn.svg" alt="backOn">
+                <img id="backOff" class="backOff block" src="images/backOff.svg" alt="backOff">
+            </div>
+            <img class="network" src="images/network.svg" alt="background">
+            <div class="userStatus" alt="userStatus">
+                <img class="online status block" src="images/online.svg" alt="online">
+                <img class="offline status none" src="images/offline.svg" alt="offline">
+            </div>
+            <div id="clock"></div>
+        </div>
+        <div id="homeScreen" class="screen block">
+            <img id="kiti" class="kiti" src="images/kiti.svg" alt="kiti">
+            <img id="friends" class="friends" src="images/friends.svg" alt="friends">                                
+            <img class="mp3" src="images/mp3.svg" alt="mp3">                                
+            <img class="map" src="images/map.svg" alt="map">                    
+            <img class="messages" src="images/messages.svg" alt="messages">          
+            <img class="settings" src="images/settings.svg" alt="settings">                     
+            <img class="profile" src="images/profile.svg" alt="settings">
+        </div>
+        <div id="kitiScreen" class="screen none">
+            <div id="hungryStatus" class="hungry-status">
+                <img id="hungryStatus0" class="hungry-status-0" src="images/hungryStatus0.svg" alt="hungryStatus0">
+                <img id="hungryStatus1" class="hungry-status-1" src="images/hungryStatus1.svg" alt="hungryStatus1">
+                <img id="hungryStatus2" class="hungry-status-2" src="images/hungryStatus2.svg" alt="hungryStatus2">
+                <img id="hungryStatus3" class="hungry-status-3" src="images/hungryStatus3.svg" alt="hungryStatus3">
+            </div>
+            <div id="loveStatus" class="love-status">
+                <img src="images/loveStatus0.svg" id="loveStatus0" class="love-status-0" alt="loveStatus0">
+                <img src="images/loveStatus1.svg" id="loveStatus1" class="love-status-1" alt="loveStatus1">
+                <img src="images/loveStatus2.svg" id="loveStatus2" class="love-status-2" alt="loveStatus2">
+                <img src="images/loveStatus3.svg" id="loveStatus3" class="love-status-3" alt="loveStatus3">
+            </div>
+            <div id="poopStatus" class="poopStatus">
+                <img src="images/poopStatus1.svg" id="poopStatus1" class="poop-status-1 none" alt="poopStatus1">
+                <img src="images/poopStatus2.svg" id="poopStatus2" class="poop-status-2 none" alt="poopStatus2">
+                <img src="images/poopStatus3.svg" id="poopStatus3" class="poop-status-3 none" alt="poopStatus3">
+            </div>
+            <img id="closet" class="closet" src="images/closet.svg" alt="closet">
+            <div id="kitipet" class="kitipet">
+                <img src="images/kitipetBody.svg" id="kitipetBody" class="kitipetBody default-animation" draggable="false" alt="kitipetBody">
+                <img src="images/kitipetHead.svg" id="kitipetHead" class="kitipetHead default-animation" draggable="false" alt="kitipetHead">
+            </div>
+            <img id="feedIcon" class="feed" src="images/feed.svg" alt="feedIcon">
+            <img id="feeding" class="feeding" src="images/feeding.svg" alt="feeding">
+            <img id="washIcon" class="wash" src="images/wash.svg" alt="washIcon">
+            <img id="washing" class="washing" src="images/washing.svg" alt="washing">
+            <img id="loveIcon" class="love" src="images/love.svg" alt="loveIcon">
+            <div id="loving" class="loving none" alt="loving">
+                <img id="lovingFrame1" class="loving frame-1" src="animations/lovingFrame1.svg" alt="lovingFrame1">
+                <img id="lovingFrame2" class="loving frame-2" src="animations/lovingFrame2.svg" alt="lovingFrame2">
+                <img id="lovingFrame3" class="loving frame-3" src="animations/lovingFrame3.svg" alt="lovingFrame3">
+                <img id="lovingFrame4" class="loving frame-4" src="animations/lovingFrame4.svg" alt="lovingFrame4">
+            </div>
+            <img id="walkIcon" class="walk" src="images/walk.svg" alt="walk">
+            <img id="playIcon" class="play" src="images/play.svg" alt="play">
+            <img id="connectIcon" class="connect" src="images/connect.svg" alt="connect">
+        </div>
+        <div id="friendScreen" class="screen none">
+            <input type="text" id="searchbarInput" class="searchbarInput" placeholder="noone.."/>
+            <div id="scrollbar" class="scrollbar">
+                <img id="scrollTrackFriendList" class="scrollTrack" src="images/scrollTrack.svg" draggable="false">
+                <img id="scrollThumbFriendList" class="scrollThumb" src="images/scrollThumb.svg" draggable="false">
+            </div>
+            <div id="friendListContainer" class="friendListContainer">
+                <div id="friendList" class="friendList">
+                <div id="friendSearchBar" class="friendSearchBar">
+                    
+                    <img id="searchIcon" class="searchIcon" src="images/searchIcon.svg">
+                    <div id="searchbarContainer" class="searchbarContainer">
+                            
+                        <div id="searchbarOutput" class="searchbarOutput" contenteditable="true" style="left: 0.2rem;"></div>
+                        
+                    </div>
+                    <div id="searchbarImgContainer" class="searchbarImgContainer">
+                        <img id="searchbarImg" class="searchbarImg" src="images/searchBar.svg">
+                    </div>
+                    
+                    <img id="addFriendIcon" class="addFriendIcon" src="images/addFriendIcon.svg">
+                </div>
+                <div id="friendCardsContainer" class="friendCardsContainer"></div>
+                </div>     
+            </div>
+        </div>
+        <div id="pmScreen" class="screen none">
+            <div id="scrollbar" class="scrollbar">
+                <img id="scrollTrackPmMessages" class="scrollTrack" src="images/scrollTrack.svg" draggable="false">
+                <img id="scrollThumbPmMessages" class="scrollThumb" src="images/scrollThumb.svg" draggable="false">
+            </div>
+            
+            <div id="pmChat" class="pmChat">
+                <div id="pmTop" class="pmTop"></div>
+                <div id="pmTopBarWrapper" class="pmTopBarWrapper">
+                    <div id="pmTopBar" class="pmTopBar">
+                        <img id="topBarBackground" class="topBarBackground" src="images/topBarBackground.svg">
+                        <img id="topBarIconGroup" class="topBarIcon group" src="images/topBarIconGroup.svg">
+                        <img id="topBarIconFollow" class="topBarIcon follow" src="images/topBarIconFollow.svg">
+        
+                        <img id="liveChatFalse" class="liveChat false block" src="images/liveChatFalse.svg">
+                        <img id="liveChatTrue" class="liveChat true none" src="images/liveChatTrue.svg">
+        
+                        <img id="topBarIconNotificationsOn" class="topBarIcon notificationsOn" src="images/topBarIconNotificationsOn.svg">
+                        <img id="topBarIconNotificationsOff" class="topBarIcon notificationsOff none" src="images/topBarIconNotificationsOff.svg">
+                        <img id="topBarIconOther" class="topBarIcon other" src="images/topBarIconOther.svg">
+                    </div>
+                </div>
+            </div>
+            <div id="smBubbleContainer" class="smBubbleContainer">
+                <div id="smBubbleBg" class="smBubbleBg"></div>
+                <div id="smUserAva" class="smUserAva">
+                    <img id="friendAvajuowou" class="friendAva" src="images/friendAva.svg" alt="friendAva">
+                </div>
+                <div id="smBubbleLeft" class="smBubbleLeft">
+                    <img id="smBubbleTL" class="smBubbleTL" src="images/smBubbleTL.svg">
+                    <img id="smBubbleML" class="smBubbleML" src="images/smBubbleML.svg">
+                    <img id="smBubbleBL" class="smBubbleBL" src="images/smBubbleBL.svg">
+                </div>
+                <div id="smBubbleCenter" class="smBubbleCenter">
+                    <img id="smBubbleTC" class="smBubbleTC" src="images/smBubbleTC.svg">
+                    <div id="smText" class="smText" contenteditable="true"></div>
+                    <img id="smBubbleBC" class="smBubbleBC" src="images/smBubbleBC.svg">
+                </div>    
+                <div id="smBubbleRight" class="smBubbleRight">
+                    <img id="smBubbleTR" class="smBubbleTR" src="images/smBubbleTR.svg">
+                    <img id="smBubbleMR" class="smBubbleMR" src="images/smBubbleMR.svg">
+                    <img id="smBubbleBR" class="smBubbleBR" src="images/smBubbleBR.svg">
+                </div>
+            </div>
+        </div>
+</div>
+    <script src="dataExample.js"></script>
+    <script src="script.js"></script>
+    <script src="messages.js"></script>
+    <script src="friends.js"></script>
+    <script src="kitipet.js"></script>
+</body>
+</html>
